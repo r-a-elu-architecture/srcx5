@@ -37,3 +37,12 @@ Always-on public node (Hugging Face Space), PyPI, MCP Registry listing, IPFS pin
   `status.json` therefore still shows `ipfs: null`.
 - **D3 remains not met.** No further change is made; `heartbeat_v152.yml` redeploys every six hours, and D3 will be
   reported met only when the live `status.json` is seen carrying the id.
+
+## FIX4 re-check of D3 (observed once, as sealed in `SEAL_V15_FIX4.txt`)
+- Run 45829107677 (`pages_v153`, 13:26 UTC): job `ipfs` succeeded (id `bafybeievk7qjhfhxmujaeyeqkc7tcht4n2fkl4ewtyucraq3jiclwqegxa`);
+  job `deploy`, which never runs the IPFS tool, failed with GitHub's "Fetching artifact metadata failed … re-run the
+  deployment at a later time" / "No artifacts named github-pages".
+- By the rule fixed in `FIX4_V15.md`, the cause is outside these files (GitHub's Pages artifact service for this
+  repository, failing since about 11:45 UTC). **D3 stays not met; nothing more is changed.**
+- Effect: the Pages mirror keeps serving its 11:44 UTC build (10 records, head `d3d70d58…`, intact). The raw.githubusercontent
+  and jsDelivr mirrors read the repository directly and do not depend on Pages deploys.
