@@ -1,0 +1,3 @@
+# SEAL FIX1 for T7 2026-11-26T08:41:48Z (disclosed in protocol/tests/v14/FIX1_T7.md), before T7 ran
+5f02f32a7cec16ad0c81256f7ed79c401456d959b026e06ef4cc3bbb668c8b03  .github/workflows/srcx5_anchor_test_fix1.yml
+cc193c6cc90129cedd3ef100c3d06c3d4274653893318bb64ad07300ab0b3d87  protocol/tests/v14/FIX1_T7.md

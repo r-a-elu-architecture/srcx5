@@ -1,0 +1,30 @@
+# v1.4.1 (replaces anchor.yml; status read from the proof itself, tests/v14/FIX2_ANCHOR.md). Anchors the log head on Bitcoin (OpenTimestamps, free) whenever the log changes, upgrades pending proofs daily,
+# and asks Software Heritage to archive the repository. Proofs are kept in anchors/, beside the log, never inside it.
+name: srcx5-anchor-v141
+on:
+  push:
+    branches: [main]
+    paths: ["log/**"]
+  schedule:
+    - cron: "17 3 * * *"
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  anchor:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: "3.12"}
+      - run: pip install opentimestamps-client
+      - run: python srcx5.py check-log --log log
+      - run: python srcx5_anchor.py stamp --log log --dir anchors
+      - name: upgrade every proof and record its status from the proof
+        run: python srcx5_anchor.py status --dir anchors
+      - name: archive at Software Heritage
+        run: curl -s -X POST "https://archive.softwareheritage.org/api/1/origin/save/git/url/https://github.com/${{ github.repository }}/" || true
+      - run: |
+          git config user.name "srcx5-anchor"; git config user.email "srcx5-anchor@users.noreply.github.com"
+          git add anchors && (git commit -qm "anchor: $(cat anchors/*.json | grep -o '"head": "[0-9a-f]*' | tail -1 | cut -c10-21)" && git push -q) || echo "nothing new"

@@ -1,0 +1,166 @@
+{
+ "T1_carriers": {
+  "running_node": {
+   "records_identical": 10,
+   "of": 10,
+   "chain_intact": true,
+   "head_equal": true,
+   "pass": true
+  },
+  "static_mirror_http": {
+   "records_identical": 10,
+   "of": 10,
+   "chain_intact": true,
+   "head_equal": true,
+   "pass": true
+  },
+  "git_clone": {
+   "records_identical": 10,
+   "of": 10,
+   "chain_intact": true,
+   "head_equal": true,
+   "pass": true
+  },
+  "file_copy": {
+   "records_identical": 10,
+   "of": 10,
+   "chain_intact": true,
+   "head_equal": true,
+   "pass": true
+  },
+  "delay_tolerant_link": {
+   "records_identical": 10,
+   "of": 10,
+   "chain_intact": true,
+   "head_equal": true,
+   "pass": true,
+   "bundles": 86,
+   "attempts": 130,
+   "simulated_hours": 5
+  },
+  "qr_chunks": {
+   "records_identical": 10,
+   "of": 10,
+   "chain_intact": true,
+   "head_equal": true,
+   "pass": true,
+   "qr_chunks": 30
+  },
+  "pass": true
+ },
+ "T2_failover": {
+  "status_with_stale": [
+   "stale",
+   "current",
+   "current"
+  ],
+  "status_after_refill": [
+   "current",
+   "current",
+   "current"
+  ],
+  "failover": {
+   "answered_by": 3,
+   "added": 10,
+   "tried": [
+    "ConnectionError",
+    "ConnectionError",
+    "ok"
+   ],
+   "records_identical": 10,
+   "of": 10,
+   "chain_intact": true,
+   "head_equal": true,
+   "pass": true
+  },
+  "all_down": {
+   "clean_error": true,
+   "seconds": 0.0
+  },
+  "poisoned_mirror": {
+   "victim_skipped_at_poisoned_mirror": true,
+   "records_after_next_mirror": {
+    "records_identical": 10,
+    "of": 10,
+    "chain_intact": true,
+    "head_equal": true,
+    "pass": true
+   }
+  },
+  "pass": true
+ },
+ "T3_standards": {
+  "openapi_valid": true,
+  "node_responses": {
+   "checked": 26,
+   "nonconforming": []
+  },
+  "schema_records_valid": 10,
+  "jsonld_expanded_prov_entity": 10,
+  "pass": true
+ },
+ "T4_mcp": {
+  "initialize": {
+   "name": "srcx5",
+   "version": "1.4"
+  },
+  "tools": [
+   "srcx5_list",
+   "srcx5_get",
+   "srcx5_verify",
+   "srcx5_verify_log",
+   "srcx5_submit",
+   "srcx5_ld"
+  ],
+  "verify_real": true,
+  "verify_tampered": false,
+  "tampered_reasons": [
+   "[DISCLOSURE] id does not match the record's content (tampered or forged)"
+  ],
+  "verify_log": {
+   "entries": 10,
+   "intact": true,
+   "broken": [],
+   "head": "d3d70d58bafd97ab91ce9b9d977d0b5578b27e46f86866074b2fb87575bcbdda"
+  },
+  "submit_tampered_quarantined": true,
+  "parse_error_code": -32700,
+  "still_answering": true,
+  "pass": true
+ },
+ "T5_regression": {
+  "invalid_quarantined": 600,
+  "invalid_total": 600,
+  "valid_admitted": 200,
+  "valid_total": 200,
+  "entries_after": 210,
+  "chain_intact": true,
+  "pass": true
+ },
+ "T6_hardening": {
+  "requests": 400,
+  "status_counts": {
+   "404": 33,
+   "405": 99,
+   "411": 34,
+   "413": 67,
+   "422": 167
+  },
+  "any_5xx": false,
+  "any_zero_or_2xx_admit": false,
+  "alive_after": true,
+  "chain_intact": true,
+  "unchanged": true,
+  "rate_limit_31st": 429,
+  "first_30": [
+   202
+  ],
+  "pass": true
+ },
+ "T7_anchor": {
+  "pass": null,
+  "note": "runs in GitHub Actions (.github/workflows/srcx5_anchor.yml)"
+ },
+ "seconds": 6.7,
+ "seed": 14
+}

@@ -1,0 +1,16 @@
+{
+ "@context": {
+  "@version": 1.1,
+  "prov": "http://www.w3.org/ns/prov#",
+  "dct": "http://purl.org/dc/terms/",
+  "foaf": "http://xmlns.com/foaf/0.1/",
+  "xsd": "http://www.w3.org/2001/XMLSchema#",
+  "srcx5": "https://r-a-elu-architecture.github.io/srcx5/vocab#",
+  "srcx5:sealedAt": {
+   "@type": "xsd:dateTime"
+  },
+  "srcx5:sha256": {
+   "@type": "xsd:string"
+  }
+ }
+}

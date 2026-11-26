@@ -1,0 +1,51 @@
+{
+ "@context": "https://r-a-elu-architecture.github.io/srcx5/context.jsonld",
+ "@id": "urn:srcx5:ff460c82eb467497caecc48aa2c7f260f9cfc272ff13db503cffd30608a09a2c",
+ "@type": [
+  "prov:Entity",
+  "srcx5:Claim"
+ ],
+ "srcx5:id": "ff460c82eb467497caecc48aa2c7f260f9cfc272ff13db503cffd30608a09a2c",
+ "dct:title": "RSC v1.2 launch proofs: admission, checks, supersede, peer audit, sync",
+ "srcx5:evidence": "simulated",
+ "srcx5:criteriaMet": "all",
+ "dct:description": "Does the protocol quarantine what fails its checks without blocking anything valid, keep identity through supersede, see a corrupted peer, and sync only what is missing?",
+ "srcx5:sealedAt": {
+  "@value": "2026-11-26T05:39:47Z",
+  "@type": "xsd:dateTime"
+ },
+ "srcx5:fingerprint": [
+  {
+   "prov:atLocation": "protocol/rsc.py",
+   "srcx5:sha256": "1ccabfbd2331a0a6619617790ca9eebe63f649c264d7eb8a40aed6d65d997b47"
+  },
+  {
+   "prov:atLocation": "protocol/tests/launch_proofs.py",
+   "srcx5:sha256": "3e93adf2c56ed28e2e0a798c361951626a526a24d61c41fdd7a6a16dda7f044a"
+  },
+  {
+   "prov:atLocation": "protocol/tests/proofs_checks.py",
+   "srcx5:sha256": "7d73995ef08a307176e4ad951155c4c7fb2c07fc21524d1c550f03550a40f04c"
+  },
+  {
+   "prov:atLocation": "protocol/tests/PREDICTIONS.md",
+   "srcx5:sha256": "cd954d4a486ed6bb44d01a68925e8a7b6130c1b8b73cc333c402edce86d960d6"
+  },
+  {
+   "prov:atLocation": "protocol/SPEC.md",
+   "srcx5:sha256": "e72c34a7996fddf8349a008733d0b80d8808b18a78cddb92671140d3483796a7"
+  }
+ ],
+ "prov:wasGeneratedBy": {
+  "@type": "prov:Activity",
+  "prov:startedAtTime": {
+   "@value": "2026-11-26T05:40:47Z",
+   "@type": "xsd:dateTime"
+  }
+ },
+ "prov:wasDerivedFrom": [
+  {
+   "@id": "urn:srcx5:ed3a1660eb64c5615ff54429ffaf04442b0ed066e63358f5c2c6c5f7eeae76eb"
+  }
+ ]
+}

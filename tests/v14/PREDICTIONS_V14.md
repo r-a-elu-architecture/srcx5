@@ -1,0 +1,17 @@
+# SRC-X.5 v1.4 launch tests: pass criteria, fixed before any run
+
+Written 26 Nov 2026 before the first run of `tests/v14/run_v14.py`; sealed in `tests/v14/SEAL_V14.txt` and pushed before
+the run. One run (seed 14). No tuning after results; a crash is re-run once and disclosed. Launch only if every test
+meets its criteria. Input: the 10-entry public log (`log/log.jsonl`). The record rules (`srcx5.py`) are unchanged.
+
+| Test | Pass criteria (all must hold) |
+|---|---|
+| T1 Carriers | The log is carried by six carriers: a running v1.4 node, a static mirror over HTTP, a git clone, a plain file copy, a simulated delay-tolerant link (1 kB bundles, 30 % loss per attempt, random delays, retransmission), and a QR-sized chunking (2,953-byte chunks reassembled). Through every carrier: 10 of 10 records arrive byte-identical in canonical form, every id recomputes, the rebuilt chain is intact and its head equals the source head. |
+| T2 Failover and refill | Three static mirrors. With mirrors 1 and 2 down, sync from the list [1, 2, 3] completes from mirror 3 with 10 of 10 records. With all three down, sync fails cleanly with an error within 60 s (no hang). A stale mirror (9 of 10 entries) is reported "stale" and the two others "current"; after re-export all three report "current". A mirror serving one record whose content does not match its id is skipped for that record, and the record arrives from the next mirror. |
+| T3 Standards | `openapi.json` validates as OpenAPI 3.1. Every read path of a running v1.4 node returns a body that validates against its OpenAPI response schema (record schema resolved). All 10 records validate against `schema/record.schema.json` (JSON Schema 2020-12). Every record's JSON-LD view expands (JSON-LD 1.1, local context) to a node typed `prov:Entity` whose `@id` is `urn:srcx5:<id>`. |
+| T4 AI layer (MCP) | `srcx5_mcp.py` over stdio: `initialize` answers with protocol and server info; `tools/list` lists the 6 tools; `srcx5_verify` on a real id answers valid; on a tampered copy (content changed, id kept) answers invalid; `srcx5_verify_log` answers intact with 10 entries; `srcx5_submit` of the tampered copy answers quarantined; a malformed line answers a JSON-RPC parse error and the server keeps answering. |
+| T5 No regression | Through `POST /submit` on a running v1.4 node: 600 of 600 invalid records quarantined (150 forged ids, 150 tampered copies of held ids, 150 sealed in the future, 150 with an e-mail address), 200 of 200 valid new records admitted; afterwards the chain is intact with 210 entries. |
+| T6 Hardening and fuzzing | 400 hostile requests (random bytes, invalid UTF-8, bodies over 256 kB, missing or negative length, JSON arrays and scalars, 50,000-deep nesting, PUT/PATCH/DELETE, random paths): every answer is 4xx (or 202 quarantine), none 5xx, none admitted; the node still answers `/health`; the chain is intact and unchanged. The 31st submission from one client inside 60 s is answered 429. |
+| T7 Anchor | Run in GitHub Actions (public timestamp servers are not reachable from the build sandbox): an OpenTimestamps proof file is created for the log head and `anchors/<head>.json` records network bitcoin, status pending or confirmed. Confirmation on Bitcoin follows within hours and is recorded when it arrives (not a launch criterion). |
+
+**Levels:** all seven met = ready to launch; any test not met = not launched, the failure disclosed beside these criteria.

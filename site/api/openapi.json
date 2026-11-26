@@ -1,0 +1,285 @@
+{
+ "openapi": "3.1.0",
+ "info": {
+  "title": "SRC-X.5",
+  "version": "1.4",
+  "summary": "An open record of sealed claims, verified at the source.",
+  "description": "Every node and every static mirror answers the read paths below; only a running node accepts POST /submit. Identity is the SHA-256 of a record's canonical form, so any copy is checked, not trusted.",
+  "license": {
+   "name": "Apache-2.0",
+   "identifier": "Apache-2.0"
+  }
+ },
+ "servers": [
+  {
+   "url": "https://r-a-elu-architecture.github.io/srcx5/api",
+   "description": "static mirror (read)"
+  },
+  {
+   "url": "http://localhost:8787",
+   "description": "your own node (read and submit)"
+  }
+ ],
+ "paths": {
+  "/ids.json": {
+   "get": {
+    "operationId": "listIds",
+    "summary": "All record ids",
+    "responses": {
+     "200": {
+      "description": "ids",
+      "content": {
+       "application/json": {
+        "schema": {
+         "type": "array",
+         "items": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+         }
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/active.json": {
+   "get": {
+    "operationId": "listActive",
+    "summary": "Ids not superseded",
+    "responses": {
+     "200": {
+      "description": "ids",
+      "content": {
+       "application/json": {
+        "schema": {
+         "type": "array",
+         "items": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+         }
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/head.json": {
+   "get": {
+    "operationId": "getHead",
+    "summary": "Head of the hash chain",
+    "responses": {
+     "200": {
+      "description": "head",
+      "content": {
+       "application/json": {
+        "schema": {
+         "type": "object",
+         "required": [
+          "head",
+          "count"
+         ],
+         "properties": {
+          "head": {
+           "type": "string",
+           "pattern": "^[0-9a-f]{64}$"
+          },
+          "count": {
+           "type": "integer"
+          },
+          "srcx5": {
+           "type": "string"
+          },
+          "transport": {
+           "type": "string"
+          }
+         }
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/log.json": {
+   "get": {
+    "operationId": "getLog",
+    "summary": "The whole chain, in order",
+    "responses": {
+     "200": {
+      "description": "entries",
+      "content": {
+       "application/json": {
+        "schema": {
+         "type": "array",
+         "items": {
+          "type": "object",
+          "required": [
+           "seq",
+           "prev",
+           "record",
+           "entry_hash"
+          ],
+          "properties": {
+           "seq": {
+            "type": "integer"
+           },
+           "prev": {
+            "type": "string",
+            "pattern": "^[0-9a-f]{64}$"
+           },
+           "entry_hash": {
+            "type": "string",
+            "pattern": "^[0-9a-f]{64}$"
+           },
+           "record": {
+            "$ref": "schema/record.schema.json"
+           }
+          }
+         }
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/records/{id}.json": {
+   "get": {
+    "operationId": "getRecord",
+    "summary": "One record",
+    "parameters": [
+     {
+      "name": "id",
+      "in": "path",
+      "required": true,
+      "schema": {
+       "type": "string",
+       "pattern": "^[0-9a-f]{64}$"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "record",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "schema/record.schema.json"
+        }
+       }
+      }
+     },
+     "404": {
+      "description": "unknown id"
+     }
+    }
+   }
+  },
+  "/ld/{id}.jsonld": {
+   "get": {
+    "operationId": "getRecordLD",
+    "summary": "One record as JSON-LD (W3C PROV)",
+    "parameters": [
+     {
+      "name": "id",
+      "in": "path",
+      "required": true,
+      "schema": {
+       "type": "string",
+       "pattern": "^[0-9a-f]{64}$"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "JSON-LD",
+      "content": {
+       "application/ld+json": {
+        "schema": {
+         "type": "object"
+        }
+       }
+      }
+     },
+     "404": {
+      "description": "unknown id"
+     }
+    }
+   }
+  },
+  "/.well-known/srcx5.json": {
+   "get": {
+    "operationId": "discover",
+    "summary": "Discovery: versions, head and where the interfaces are",
+    "responses": {
+     "200": {
+      "description": "discovery",
+      "content": {
+       "application/json": {
+        "schema": {
+         "type": "object"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/health": {
+   "get": {
+    "operationId": "health",
+    "summary": "Node status (running nodes only)",
+    "responses": {
+     "200": {
+      "description": "status",
+      "content": {
+       "application/json": {
+        "schema": {
+         "type": "object"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/submit": {
+   "post": {
+    "operationId": "submitRecord",
+    "summary": "Submit a record (running nodes only)",
+    "requestBody": {
+     "required": true,
+     "content": {
+      "application/json": {
+       "schema": {
+        "$ref": "schema/record.schema.json"
+       }
+      }
+     }
+    },
+    "responses": {
+     "201": {
+      "description": "admitted"
+     },
+     "202": {
+      "description": "quarantined, with reasons (never deleted)"
+     },
+     "411": {
+      "description": "length required"
+     },
+     "413": {
+      "description": "too large"
+     },
+     "422": {
+      "description": "not a JSON object"
+     },
+     "429": {
+      "description": "too many submissions"
+     }
+    }
+   }
+  }
+ }
+}

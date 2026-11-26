@@ -1,0 +1,31 @@
+# Every six hours: compare each mirror's head with the log. If any is stale or down, refresh what this repository
+# controls (Pages redeploy, CDN purge) and push to any extra mirror whose token is set as a secret.
+name: srcx5-mirrors
+on:
+  schedule:
+    - cron: "41 */6 * * *"
+  workflow_dispatch:
+permissions:
+  contents: read
+  actions: write
+jobs:
+  heal:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with: {fetch-depth: 0}
+      - id: st
+        run: python srcx5_net.py status --log log | tee status.json && echo "ok=1" >> $GITHUB_OUTPUT || echo "ok=0" >> $GITHUB_OUTPUT
+      - if: steps.st.outputs.ok == '0'
+        env: {GH_TOKEN: "${{ github.token }}"}
+        run: |
+          gh workflow run pages.yml || true
+          for p in head.json ids.json log.json active.json; do curl -s "https://purge.jsdelivr.net/gh/${{ github.repository }}@main/site/api/$p" >/dev/null || true; done
+      - name: extra mirrors (optional; each runs only if its secret is set)
+        env:
+          CODEBERG_TOKEN: ${{ secrets.CODEBERG_TOKEN }}
+          GITLAB_TOKEN: ${{ secrets.GITLAB_TOKEN }}
+        run: |
+          [ -n "$CODEBERG_TOKEN" ] && git push -q --force "https://oauth2:${CODEBERG_TOKEN}@codeberg.org/${{ github.repository }}.git" HEAD:main || true
+          [ -n "$GITLAB_TOKEN" ] && git push -q --force "https://oauth2:${GITLAB_TOKEN}@gitlab.com/${{ github.repository }}.git" HEAD:main || true

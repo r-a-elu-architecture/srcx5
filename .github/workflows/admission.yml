@@ -24,6 +24,6 @@ jobs:
         if: github.event_name == 'push'
         run: |
           for f in submissions/*.json; do [ -e "$f" ] || continue; python srcx5.py admit "$f" --log log && git rm -q "$f"; done
-          python srcx5.py check-log --log log && python srcx5.py export --log log --out site/api
+          python srcx5.py check-log --log log && python srcx5_net.py export --log log --out site/api
           git config user.name srcx5-admission; git config user.email srcx5-admission@users.noreply.github.com
           git add log site/api && git commit -qm "admit submissions" && git push || echo "nothing to admit"

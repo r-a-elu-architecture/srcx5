@@ -1,0 +1,26 @@
+{
+ "about": "Every copy of the SRC-X.5 log that anyone may read or sync from. Each answers the same paths (ids.json, head.json, log.json, records/<id>.json). Copies are checked, not trusted: every record's id is its own SHA-256. Add a mirror with one pull request.",
+ "mirrors": [
+  {
+   "url": "https://r-a-elu-architecture.github.io/srcx5/api",
+   "kind": "static",
+   "host": "GitHub Pages"
+  },
+  {
+   "url": "https://raw.githubusercontent.com/r-a-elu-architecture/srcx5/main/site/api",
+   "kind": "static",
+   "host": "GitHub raw content"
+  },
+  {
+   "url": "https://cdn.jsdelivr.net/gh/r-a-elu-architecture/srcx5@main/site/api",
+   "kind": "static",
+   "host": "jsDelivr (global CDN)"
+  }
+ ],
+ "archives": [
+  {
+   "url": "https://archive.softwareheritage.org/browse/origin/?origin_url=https://github.com/r-a-elu-architecture/srcx5",
+   "host": "Software Heritage"
+  }
+ ]
+}

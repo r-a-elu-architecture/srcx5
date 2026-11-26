@@ -1,0 +1,20 @@
+# SRC-X.5
+
+> An open record of sealed claims, verified at the source. A record says what was predicted and by which criteria, which
+> files were fixed and when, when it ran, what came out, and who replicated it. Its id is the SHA-256 of its canonical
+> form, so any copy, from any host or network, is checked rather than trusted. Apache 2.0; the specification is CC BY 4.0.
+
+## Read
+- [Discovery](.well-known/srcx5.json): versions, head, where everything is
+- [All ids](api/ids.json), [head](api/head.json), [the whole chain](api/log.json), one record: api/records/<id>.json
+- One record as W3C PROV JSON-LD: api/ld/<id>.jsonld
+
+## Interfaces
+- [OpenAPI 3.1](openapi.json) for any HTTP client or SDK
+- [JSON Schema](schema/record.schema.json) for the record format
+- [JSON-LD context](context.jsonld) for linked data
+- [Mirrors](MIRRORS.json): every copy; use the first that answers
+- MCP server for AI agents: `python srcx5_mcp.py --log log` (tools: srcx5_list, srcx5_get, srcx5_verify, srcx5_verify_log, srcx5_submit, srcx5_ld)
+
+## Rules
+- [Specification v1.4](SPEC_SRCX5_1_4.md): the layer map, transport, the seven checks, quarantine, supersede, audit

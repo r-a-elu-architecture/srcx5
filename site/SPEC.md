@@ -1,9 +1,9 @@
-# SRC-X.5, specification v1.3
+# SRC-X.5, specification v1.4
 
 An open record of sealed claims, verified at the source.
 
-**Status:** v1.3, 26 November 2026 (renames v1.2, "RSOS Sealed Claims"; rules unchanged, see §0). Text CC BY 4.0; reference code Apache 2.0.
-**Reference implementation:** `srcx5.py` (node, command-line tool and sync in one file, Python standard library only).
+**Status:** v1.4, 26 November 2026. v1.4 adds connection at every layer (§L); the record format and every rule are those of v1.3. Text CC BY 4.0; reference code Apache 2.0.
+**Reference implementation:** `srcx5.py` (the rules: admission, the log, the core node; sealed, unchanged since v1.3), `srcx5_net.py` (the v1.4 network layer) and `srcx5_mcp.py` (the AI-agent interface). Python standard library only.
 
 ## 0. Name and versions
 - **Name:** SRC-X.5. Written `srcx5` where punctuation cannot go (file, package, repository). It was first written on
@@ -11,6 +11,51 @@ An open record of sealed claims, verified at the source.
 - **v1.3 changes the name only.** Every rule, check and threshold is the same as v1.2. The version field is now
   `srcx5`; a v1.3 node also admits records carrying `rsc: "1.2"`, so the genesis log keeps every id and its chain.
 - **v1.2** (`rsc.py`, sealed in `tests/SEAL_RSC.txt`) is kept unchanged as the reference that made the genesis log.
+- **v1.4 changes connection only** (§L). The record format stays `srcx5: "1.3"`; `srcx5.py` is unchanged.
+
+## L. Layers: where anyone connects (v1.4)
+A record is canonical bytes whose identity is their own SHA-256. Every layer of every communication model can carry
+bytes and every system can compute a hash, so SRC-X.5 is applied at each layer through that layer's main standard.
+Whoever enters at any layer meets the protocol in the form native to that layer.
+
+**The OSI model**
+
+| Layer | Main standard there | SRC-X.5 at that layer |
+|---|---|---|
+| 8 Meaning (above OSI) | purpose, criteria, lineage; agents | every record states its purpose, its pass criteria fixed before the run, and its lineage; AI agents connect through MCP (`srcx5_mcp.py`) |
+| 7 Application | HTTP/REST, git, MCP | the node API (`openapi.json`, OpenAPI 3.1); the log as a git repository; the browser verifier |
+| 6 Presentation | UTF-8, JSON, JSON-LD | one canonical encoding (sorted keys, no spaces, UTF-8, integers only); `schema/record.schema.json`; a W3C PROV view in JSON-LD (`ld/<id>.jsonld`, `context.jsonld`) |
+| 5 Session | peer synchronisation | digest sync: compare heads, move only missing records, resume after any break; first peer that answers is used |
+| 4 Transport | TCP, QUIC; Bundle Protocol (space) | carried unchanged; each record is self-contained, so store-and-forward and long delays need nothing extra |
+| 3 Network | IP; content addressing | the id is the address: the same id finds and proves the same bytes over any route |
+| 2 Data link | Ethernet, Wi-Fi, CCSDS space data link | any frame; integrity is end to end by the hash, not by the link |
+| 1 Physical | fibre, radio, optical, print | any medium; bytes read back from any medium verify identically |
+
+**The other models, the same way**
+
+| Model | Where SRC-X.5 binds |
+|---|---|
+| TCP/IP (the internet) | layers 7-3 above, merged |
+| Space and interplanetary (CCSDS, delay-tolerant networking) | records travel as bundles or files unchanged; sync tolerates hours of delay and broken links |
+| Web and linked data (W3C) | JSON-LD and PROV: records are provenance entities in any semantic or scientific tool |
+| Decentralized ledgers | the head hash anchored in a transaction (Bitcoin through OpenTimestamps in the reference set); anyone may anchor on any ledger |
+| Archives and identifiers | DOI snapshots (Zenodo) and Software Heritage keep the log permanently citable |
+
+**One shape for every copy.** A running node and a static mirror answer the same read paths: `ids.json`, `active.json`,
+`head.json`, `log.json`, `records/<id>.json`, `ld/<id>.jsonld`, `.well-known/srcx5.json`. A running node also answers the
+v1.3 paths and `POST /submit`. A client never needs to know which kind it reached.
+
+**Mirrors and failover.** `MIRRORS.json` lists every known copy. Sync takes a list of peers and mirrors and uses the
+first that answers; a copy that answers with a record whose id is not its own hash is skipped. A scheduled check
+compares each mirror's head with the log and refreshes any that is stale. Anyone who runs a node holds a full copy and
+can be added to the list with one pull request. No copy is trusted; every copy is checked.
+
+**Anchors.** An anchor proves that the log head (and so every record before it) existed at a time, on a public
+network. Anchors are stored beside the log (`anchors/<head>.json` and the network's proof), not inside it, so any
+network can be added without changing a record.
+
+**Hardening.** A node accepts at most 256 kB per submission and 30 submissions per client per minute, accepts only
+UTF-8 JSON objects, answers 4xx to anything else, never crashes on bad input, and refuses edits and deletion (405).
 
 ## 1. Purpose
 A claim is easy to make and hard to check. An SRC-X.5 record makes one claim checkable by anyone, in any field. It states:

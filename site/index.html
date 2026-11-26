@@ -18,7 +18,7 @@ a{color:var(--acc)}h2{font-size:19px;margin-top:40px}
 <p class="lead">An open record of claims that anyone can check. Each record states what was predicted and by which
 criteria, which files were fixed and when, when it ran, and what came out. Every record passes seven checks; what fails is quarantined, never published, and nothing is deleted. This page re-checks every record
 <b>in your browser</b>: it recomputes each record's identity with SHA-256 and verifies the chain, without trusting the server.</p>
-<div class="bar"><span>Records: <b id="n">…</b></span><span>Chain: <b id="chain">checking…</b></span><span>Head: <code id="head">…</code></span><span>Protocol: <a href="SPEC.md">specification v1.3</a></span></div>
+<div class="bar"><span>Records: <b id="n">…</b></span><span>Chain: <b id="chain">checking…</b></span><span>Head: <code id="head">…</code></span><span>Protocol: <a href="SPEC.md">specification v1.4</a></span></div>
 <table><thead><tr><th>Claim</th><th>Pre-registered criteria</th><th>Evidence · sealed → ran</th><th>Identity</th></tr></thead><tbody id="rows"></tbody></table>
 <h2>Check or add a record yourself</h2>
 <pre>python srcx5.py verify record.json --repo &lt;checkout&gt;     # every fingerprint, byte for byte
@@ -31,7 +31,10 @@ async function sha(s){const b=await crypto.subtle.digest("SHA-256",new TextEncod
 const esc = s => String(s ?? "").replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
 const day = s => s ? s.replace("T"," ").slice(0,16) + " UTC" : "–";
 (async()=>{
-  let log; try { log = await (await fetch("api/log.json")).json(); } catch(e){ document.getElementById("chain").textContent="log not found"; return; }
+  const MIRRORS = ["api", "https://raw.githubusercontent.com/r-a-elu-architecture/srcx5/main/site/api", "https://cdn.jsdelivr.net/gh/r-a-elu-architecture/srcx5@main/site/api"];
+  let log, from;  // first copy that answers; every record is re-checked below, so no copy is trusted
+  for (const m of MIRRORS) { try { const r = await fetch(m + "/log.json"); if (r.ok) { log = await r.json(); from = m; break; } } catch(e) {} }
+  if (!log) { document.getElementById("chain").textContent = "no mirror answered"; return; }
   let prev = "0".repeat(64), ok = true; const rows = []; const gone = new Set(log.map(e => e.record.supersedes).filter(Boolean));
   for (const [i,e] of log.entries()) {
     const {entry_hash, ...rest} = e; const eh = await sha(canon(rest));

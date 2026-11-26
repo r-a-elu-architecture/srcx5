@@ -3,7 +3,7 @@ name: srcx5-pages
 on:
   push:
     branches: [main]
-    paths: ["log/**", "site/**", "SPEC_SRCX5.md"]
+    paths: ["log/**", "site/**", "SPEC_SRCX5_1_4.md", "srcx5_net.py", "openapi.json", "schema/**", "context.jsonld", "MIRRORS.json", "llms.txt"]
   workflow_dispatch:
 permissions:
   contents: read
@@ -15,7 +15,7 @@ jobs:
     environment: {name: github-pages}
     steps:
       - uses: actions/checkout@v4
-      - run: cp SPEC_SRCX5.md site/SPEC.md && python srcx5.py check-log --log log && python srcx5.py export --log log --out site/api
+      - run: cp SPEC_SRCX5_1_4.md site/SPEC.md && cp llms.txt site/llms.txt && python srcx5.py check-log --log log && python srcx5_net.py export --log log --out site/api
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with: {path: site}
