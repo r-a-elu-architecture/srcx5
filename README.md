@@ -4,7 +4,7 @@
 criteria, which files were fixed and when, when it ran, what came out, and who replicated it. Its id is the SHA-256 of
 its canonical form, so every copy is verified independently of the host or network it came from. No personal data. Any field.
 
-**Paper:** [doi:10.5281/zenodo.24555259](https://doi.org/10.5281/zenodo.24555259) (preprint, CC BY 4.0). **See it:** [the live record](https://r-a-elu-architecture.github.io/srcx5/) re-checks every record in your browser.
+**Paper:** [doi:10.5281/zenodo.24555259](https://doi.org/10.5281/zenodo.24555259) (preprint, CC BY 4.0). **Software archive:** [doi:10.5281/zenodo.24557469](https://doi.org/10.5281/zenodo.24557469) (v1.4.1). **See it:** [the live record](https://r-a-elu-architecture.github.io/srcx5/) re-checks every record in your browser.
 
 ## Connect from any layer
 A record is canonical bytes whose identity is their own hash, so it travels unchanged over any carrier and is verified
@@ -57,3 +57,4 @@ Code Apache 2.0 ([`LICENSE`](LICENSE)); specification text CC BY 4.0.
 ## Cite
 Elu, R. A. (2026). *SRC-X.5: an open record of sealed claims, verified at the source.* Preprint, Zenodo.
 https://doi.org/10.5281/zenodo.24555259 (machine-readable: [`CITATION.cff`](CITATION.cff))
+Software: Elu, R. A. (2026). *SRC-X.5* (v1.4.1) [Computer software]. Zenodo. https://doi.org/10.5281/zenodo.24557469
