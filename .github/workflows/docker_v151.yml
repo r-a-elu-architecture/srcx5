@@ -1,9 +1,10 @@
+# v1.5.1 FIX2 (tests/v15/FIX2_V15.md): replaces docker.yml, kept unchanged in the private record.
 # v1.5: the node as a container on GitHub's registry: docker run -p 7860:7860 ghcr.io/r-a-elu-architecture/srcx5
-name: srcx5-docker
+name: srcx5-docker-v151
 on:
   push:
     branches: [main]
-    paths: ["srcx5*.py", "deploy/**", "log/**", "NODES.json", "MIRRORS.json", "openapi.json"]
+    paths: [".github/workflows/docker_v151.yml", "srcx5*.py", "deploy/**", "log/**", "NODES.json", "MIRRORS.json", "openapi.json"]
   release:
     types: [published]
   workflow_dispatch:
@@ -26,7 +27,7 @@ jobs:
         with: {context: ., file: deploy/Dockerfile, push: true, tags: "${{ steps.t.outputs.tags }}"}
       - name: the image serves the record (health, MCP over HTTP, agent card)
         run: |
-          docker run -d -p 7860:7860 --name n ${{ steps.t.outputs.img }}:latest; sleep 8
+          docker run -d -p 7860:7860 --name srcx5node ${{ steps.t.outputs.img }}:latest; sleep 8
           curl -sf localhost:7860/health | tee /tmp/h.json; grep -q '"node": "1.5"' /tmp/h.json
           curl -sf -X POST localhost:7860/mcp -H 'Content-Type: application/json' -d '{"jsonrpc":"2.0","id":1,"method":"tools/list"}' | grep -q srcx5_verify
           curl -sf localhost:7860/.well-known/agent-card.json | grep -q '"name": "SRC-X.5"'

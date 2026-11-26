@@ -1,0 +1,11 @@
+# SEAL SRC-X.5 v1.5 FIX2 2026-11-26T11:41:11Z: deployment workflow fixes fixed before D1-D4 are observed again (tests/v15/FIX2_V15.md).
+367d07ff415ba45b0cf09cb3fda5a05778376f1d7036b1b7b65947810d5f91d7  protocol/.github/workflows/pages_v151.yml
+48353acac3201e25c42a9913c8c02cb5a573c2dab240e2843fb92a891de6272f  protocol/.github/workflows/docker_v151.yml
+f1604e177848e9db65e2a3962b844689202033d84f545bf0436807afe05d4f59  protocol/.github/workflows/heartbeat_v151.yml
+82f4029cb14741f7307b0428016c1c8b5fd0e3ab6e35ff937da276964d1bdc07  protocol/.github/workflows/issue_submit_v151.yml
+004483ffe0a1003bef2588bb77e1a5e5bde20a99f00c937e6879f8cadc475790  protocol/.github/workflows/pages.yml
+c7ef40f32a260fe68eb25b6e40afc8aa46ce301fdb7d0e494baf63016e1e09d6  protocol/.github/workflows/docker.yml
+011ab311d74a2d7cbfd4682791826583e1c7da4b6c92e52f5be00799ba5f7930  protocol/.github/workflows/heartbeat.yml
+fbfcf5e54a6443de9464e3788ad735a81bac1998e0ab864400666b3aac004822  protocol/.github/workflows/issue_submit.yml
+872d83168d99d963998d41fd77a48f89403ddee8858775b0d96b1eef2a393d61  protocol/tests/v15/FIX2_V15.md
+43a9fa5eaa1985a03c99bcd6f2361c63ecd808fafcf3c18dfe3524a3c1723723  protocol/tests/v15/PREDICTIONS_V15.md
