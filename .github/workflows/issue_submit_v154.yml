@@ -1,7 +1,7 @@
-# v1.5.3 FIX4 (tests/v15/FIX4_V15.md): replaces issue_submit_v152.yml, kept unchanged in the private record.
+# v1.5.4 FIX5 (tests/v15/FIX5_V15.md): replaces issue_submit_v153.yml, kept in the private record.
 # v1.5: submit a record through an issue. The issue text is data: written to a file by the GitHub API, parsed as JSON
 # by srcx5_issue.py and checked by srcx5.check(). It is never placed in a shell command.
-name: srcx5-issue-submit-v153
+name: srcx5-issue-submit-v154
 on:
   issues:
     types: [opened, edited, labeled]
@@ -37,7 +37,7 @@ jobs:
             python srcx5.py check-log --log log
             git config user.name srcx5-admission; git config user.email srcx5-admission@users.noreply.github.com
             git add log && git commit -qm "admit record from issue #${N}" && git push -q
-            gh workflow run pages_v153.yml || true; gh workflow run anchor_v141.yml || true
+            gh workflow run ipfs_v154.yml || true; gh workflow run pages_v154.yml || true; gh workflow run anchor_v141.yml || true
             gh issue comment "$N" --body-file /tmp/comment.md; gh issue close "$N" || true
           else
             gh issue comment "$N" --body-file /tmp/comment.md

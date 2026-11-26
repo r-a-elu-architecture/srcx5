@@ -1,0 +1,9 @@
+# SEAL SRC-X.5 v1.5 FIX5 2026-11-26T14:40:31Z: deploy restored, IPFS id beside it; criteria in tests/v15/FIX5_V15.md, fixed before observation.
+36087a7f774bf1ccc4e9ee320abee5ad0dcbe864c69a1f47d9db1a203e68f326  protocol/.github/workflows/pages_v154.yml
+e3f21895352c6ef5c8690d449cf6e041229a0a4598d400100f58511f2f90a419  protocol/.github/workflows/ipfs_v154.yml
+9e356abf2f3292b092abff49ea4299d11a88f4e50217cab345db3934a54e69c9  protocol/.github/workflows/heartbeat_v154.yml
+585ba07f681eccc3ef68d007e23ee32bfb372465c4d78a0228bbf28ab54c3f42  protocol/.github/workflows/issue_submit_v154.yml
+11dbce30a95241183da563eb5e430f19602a2b2dc63baeba3c61c02c3545c59c  protocol/.github/workflows/pages_v153.yml
+40ba662969c66c4584522b3ec6552c8c60228fcb9d4994aee7dbad1eb9e65fde  protocol/.github/workflows/heartbeat_v153.yml
+d4da52940d974756a3102933976978aaef8e43bdbda2b78f3b15e4584f7c2be5  protocol/.github/workflows/issue_submit_v153.yml
+ecee3a0f8473c641e515a1f7c4327345c8b4064bf5030983b6f1b9baf64f3e4b  protocol/tests/v15/FIX5_V15.md

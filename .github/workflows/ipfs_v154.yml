@@ -1,0 +1,39 @@
+# v1.5.4 FIX5 (tests/v15/FIX5_V15.md): the IPFS content id of the read API, published as site/api/ipfs.json.
+# The id is computed from a fresh export of the log (without ipfs.json and status.json), so it is stable for a given log.
+# Commits only when the id changes, then starts a Pages deploy (a commit by this workflow does not trigger one by itself).
+name: srcx5-ipfs-v154
+on:
+  push:
+    branches: [main]
+    paths: ["log/**", ".github/workflows/ipfs_v154.yml"]
+  workflow_dispatch:
+permissions:
+  contents: write
+  actions: write
+concurrency: {group: srcx5-log, cancel-in-progress: false}
+jobs:
+  cid:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: "3.12"}
+      - env: {GH_TOKEN: "${{ github.token }}"}
+        run: |
+          python srcx5_node.py export --log log --out /tmp/api --anchors anchors --no-probe
+          curl -sfL --retry 3 --max-time 120 https://github.com/ipfs/kubo/releases/download/v0.32.1/kubo_v0.32.1_linux-amd64.tar.gz | tar xz -C /tmp
+          /tmp/kubo/ipfs init >/dev/null
+          CID=$(/tmp/kubo/ipfs add -r -Q --cid-version 1 --only-hash /tmp/api); echo "$CID"
+          HEAD=$(python -c "import json;print(json.load(open('/tmp/api/head.json'))['head'])")
+          mkdir -p site/api
+          python - "$CID" "$HEAD" <<'PY'
+          import json, sys
+          cid, head = sys.argv[1], sys.argv[2]
+          json.dump({"cid": cid, "head": head, "covers": "the read API directory for this head, without ipfs.json and status.json (ipfs add -r --cid-version 1)",
+                     "gateway": f"https://{cid}.ipfs.dweb.link/"}, open("site/api/ipfs.json", "w"), indent=1)
+          PY
+          git config user.name srcx5-ipfs; git config user.email srcx5-ipfs@users.noreply.github.com
+          if ! git diff --quiet -- site/api/ipfs.json || ! git ls-files --error-unmatch site/api/ipfs.json >/dev/null 2>&1; then
+            git add site/api/ipfs.json && git commit -qm "ipfs.json: content id $CID for head $HEAD" && git push -q && gh workflow run pages_v154.yml
+          fi
