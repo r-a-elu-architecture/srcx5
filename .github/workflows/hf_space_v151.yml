@@ -34,6 +34,6 @@ jobs:
           srv.serve_forever()
           PY
           sed -i 's/^          //' /tmp/space/app.py
-          printf -- '---\ntitle: SRC-X.5 node\nemoji: 🔗\ncolorFrom: green\ncolorTo: blue\nsdk: gradio\napp_file: app.py\npinned: true\nlicense: apache-2.0\nshort_description: SRC-X.5 node: open record of sealed claims, MCP, A2A\n---\n# SRC-X.5 node\nAn always-on node of the open record of sealed claims: read API, POST /submit, MCP over HTTP at /mcp, A2A at /a2a, agent card at /.well-known/agent-card.json.\nSource: https://github.com/%s\n' "$GITHUB_REPOSITORY" > /tmp/space/README.md
+          printf -- '---\ntitle: SRC-X.5 node\nemoji: 🔗\ncolorFrom: green\ncolorTo: blue\nsdk: gradio\napp_file: app.py\npinned: true\nlicense: apache-2.0\nshort_description: "SRC-X.5 node - open record of sealed claims, MCP, A2A"\n---\n# SRC-X.5 node\nAn always-on node of the open record of sealed claims: read API, POST /submit, MCP over HTTP at /mcp, A2A at /a2a, agent card at /.well-known/agent-card.json.\nSource: https://github.com/%s\n' "$GITHUB_REPOSITORY" > /tmp/space/README.md
           cd /tmp/space && git init -q -b main && git add -A && git -c user.name=srcx5 -c user.email=srcx5@users.noreply.github.com commit -qm "sync from $GITHUB_SHA"
           git push -q --force "https://user:${HF_TOKEN}@huggingface.co/spaces/${HF_SPACE}" main
