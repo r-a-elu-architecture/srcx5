@@ -1,0 +1,25 @@
+# v1.5.1: replaces mcp_registry.yml (sealed in tests/v15/SEAL_V15.txt, left unchanged) for the v1.5.1 listing.
+# Publishes server_v151.json (version 1.5.1, image ghcr.io/r-a-elu-architecture/srcx5:v1.5.1) to the official MCP Registry
+# (namespace io.github.r-a-elu-architecture, GitHub OIDC; no token stored). Run by hand after the GitHub release v1.5.1 has
+# pushed the v1.5.1 image and the package is public; the first step stops with a clear message if the image is missing.
+name: srcx5-mcp-registry-v151
+on:
+  workflow_dispatch:
+permissions:
+  id-token: write
+  contents: read
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: the v1.5.1 image exists and carries the registry label
+        run: |
+          docker pull ghcr.io/r-a-elu-architecture/srcx5:v1.5.1 || { echo "::error::image ghcr.io/r-a-elu-architecture/srcx5:v1.5.1 not found or not public (publish release v1.5.1 first)"; exit 1; }
+          L=$(docker inspect -f '{{ index .Config.Labels "io.modelcontextprotocol.server.name" }}' ghcr.io/r-a-elu-architecture/srcx5:v1.5.1)
+          [ "$L" = "io.github.r-a-elu-architecture/srcx5" ] || { echo "::error::label io.modelcontextprotocol.server.name is '$L'"; exit 1; }
+      - run: |
+          cp server_v151.json server.json   # in the runner only; the sealed server.json in the repository is not changed
+          curl -sL "https://github.com/modelcontextprotocol/registry/releases/latest/download/mcp-publisher_linux_amd64.tar.gz" | tar xz mcp-publisher
+          ./mcp-publisher login github-oidc
+          ./mcp-publisher publish
