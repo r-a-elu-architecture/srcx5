@@ -1,0 +1,6 @@
+{
+ "cid": "bafybeidmljksaoqv7koakohwtneiqt2qmjy3v3wtx5ybaujxv776sytxhi",
+ "head": "d3d70d58bafd97ab91ce9b9d977d0b5578b27e46f86866074b2fb87575bcbdda",
+ "covers": "the read API directory for this head, without ipfs.json and status.json (ipfs add -r --cid-version 1)",
+ "gateway": "https://bafybeidmljksaoqv7koakohwtneiqt2qmjy3v3wtx5ybaujxv776sytxhi.ipfs.dweb.link/"
+}
