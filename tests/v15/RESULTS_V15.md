@@ -29,3 +29,11 @@ T1–T8 met (T4 after FIX1); D1, D2, D4 met; D3 not met. FIX3 (the IPFS command)
 
 ## Open (owner accounts; not results)
 Always-on public node (Hugging Face Space), PyPI, MCP Registry listing, IPFS pinning.
+
+## FIX3 re-check of D3 (observed once, as sealed in `SEAL_V15_FIX3.txt`)
+- The IPFS content id is now computed: `bafybeievk7qjhfhxmujaeyeqkc7tcht4n2fkl4ewtyucraq3jiclwqegxa` (run 45813478497 log).
+- The deploy did not go out: GitHub's Pages deploy step reported "No artifacts named github-pages" 0.3 s after the
+  artifact was uploaded and finalized (artifact 15115105048); re-run once as a crash, same error. The live
+  `status.json` therefore still shows `ipfs: null`.
+- **D3 remains not met.** No further change is made; `heartbeat_v152.yml` redeploys every six hours, and D3 will be
+  reported met only when the live `status.json` is seen carrying the id.
