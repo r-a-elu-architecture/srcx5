@@ -44,6 +44,8 @@ audit each other (`srcx5.py audit`). The rules live in `srcx5.py` (sealed, uncha
 (v1.4); both use the Python standard library only.
 
 ## In the log on day one
+Every claim in the research release, with number, baseline and caveat: [CLAIMS.md](https://github.com/r-a-elu-architecture/rsos-one-seed/blob/main/CLAIMS.md).
+
 The sealed tests of the RSOS research release ([rsos-one-seed](https://github.com/r-a-elu-architecture/rsos-one-seed)),
 including those whose criteria were not met, and the protocol's launch proofs. Each was fingerprinted and pushed
 before it ran.
