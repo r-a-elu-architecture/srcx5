@@ -1,4 +1,17 @@
 {
  "about": "Always-on SRC-X.5 nodes (read, submit, MCP over HTTP, A2A). The public log pulls admitted records from every node listed here every six hours. Add your node with one pull request.",
- "nodes": []
+ "nodes": [
+  {
+   "url": "https://rsos-srcx5.hf.space",
+   "host": "Hugging Face Spaces (RSOS/srcx5)",
+   "operator": "R. A. Elu",
+   "since": "2026-11-26",
+   "serves": [
+    "read",
+    "submit",
+    "mcp",
+    "a2a"
+   ]
+  }
+ ]
 }
