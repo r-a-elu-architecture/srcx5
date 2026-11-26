@@ -46,3 +46,12 @@ Always-on public node (Hugging Face Space), PyPI, MCP Registry listing, IPFS pin
   repository, failing since about 11:45 UTC). **D3 stays not met; nothing more is changed.**
 - Effect: the Pages mirror keeps serving its 11:44 UTC build (10 records, head `d3d70d58…`, intact). The raw.githubusercontent
   and jsDelivr mirrors read the repository directly and do not depend on Pages deploys.
+
+## FIX5 (observed once, as sealed in `SEAL_V15_FIX5.txt`)
+- **F5a deploy restored: met.** `pages_v154` deployed at 14:40 UTC (first deploy since 11:44); the live agent card names the public node (`https://rsos-srcx5.hf.space/a2a`, version 1.5).
+- **F5b IPFS id published: met.** Live `api/ipfs.json`: `bafybeidmljksaoqv7koakohwtneiqt2qmjy3v3wtx5ybaujxv776sytxhi` for head `d3d70d58…` (commit 12934e4 by `ipfs_v154`). It differs from the FIX3/FIX4 id because it covers a fresh export without `status.json` and `ipfs.json`, as stated in the file.
+- Disclosed: a manual start of `ipfs_v154` ran at the same moment as the automatic one; its push was rejected ("fetch first") because the other had already committed the same id. No effect.
+- **D3 as sealed (id inside `status.json`) remains not met**; the id is published in the alternative form fixed in `FIX5_V15.md`.
+
+## Level, unchanged: partly met
+T1–T8 met (T4 after FIX1); D1, D2, D4 met; D3 not met as sealed, met in the alternative form of FIX5 (F5a, F5b).
