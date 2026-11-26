@@ -1,0 +1,70 @@
+{
+ "seed": 3,
+ "checks": {
+  "valid": 200,
+  "valid_blocked": 0,
+  "violations": {
+   "DISCLOSURE": {
+    "contained": 30,
+    "named": 30,
+    "of": 30
+   },
+   "CONSENT_PRIVACY": {
+    "contained": 30,
+    "named": 30,
+    "of": 30
+   },
+   "HARM_BOUND": {
+    "contained": 30,
+    "named": 30,
+    "of": 30
+   },
+   "CONFORMANCE": {
+    "contained": 30,
+    "named": 30,
+    "of": 30
+   },
+   "ATTRIBUTION": {
+    "contained": 30,
+    "named": 30,
+    "of": 30
+   },
+   "PURPOSE": {
+    "contained": 30,
+    "named": 30,
+    "of": 30
+   }
+  },
+  "contained_published": 0
+ },
+ "supersede": {
+  "clone_admitted": true,
+  "old_still_in_log": true,
+  "old_active": false,
+  "clone_active": true,
+  "identity_change_contained": true
+ },
+ "peer_audit": {
+  "clean_peer": {
+   "peer": "http://127.0.0.1:34607",
+   "chain_broken": false,
+   "content_differs": false,
+   "drift": false,
+   "entries": 29
+  },
+  "corrupted_peer": {
+   "peer": "http://127.0.0.1:41499",
+   "chain_broken": true,
+   "content_differs": true,
+   "drift": true,
+   "entries": 29
+  },
+  "behind_peer": {
+   "peer": "http://127.0.0.1:46825",
+   "chain_broken": false,
+   "content_differs": false,
+   "drift": false,
+   "entries": 4
+  }
+ }
+}

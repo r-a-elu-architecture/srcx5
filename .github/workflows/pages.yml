@@ -1,0 +1,22 @@
+# Publishes the viewer and the static read API (site/) to GitHub Pages on every change to the log.
+name: srcx5-pages
+on:
+  push:
+    branches: [main]
+    paths: ["log/**", "site/**", "SPEC_SRCX5.md"]
+  workflow_dispatch:
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment: {name: github-pages}
+    steps:
+      - uses: actions/checkout@v4
+      - run: cp SPEC_SRCX5.md site/SPEC.md && python srcx5.py check-log --log log && python srcx5.py export --log log --out site/api
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with: {path: site}
+      - uses: actions/deploy-pages@v4

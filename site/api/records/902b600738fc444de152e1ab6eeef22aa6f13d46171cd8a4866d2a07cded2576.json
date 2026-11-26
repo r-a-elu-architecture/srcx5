@@ -1,0 +1,365 @@
+{
+ "consent_harm": {
+  "harm_reports": [],
+  "personal_data": false
+ },
+ "declarations": {
+  "affects_people": false,
+  "note": "AI, data and simulated hosts; no living participants",
+  "predicted_harm": 0,
+  "serves_mission": true
+ },
+ "evidence": "both",
+ "id": "902b600738fc444de152e1ab6eeef22aa6f13d46171cd8a4866d2a07cded2576",
+ "lineage": {
+  "parents": [
+   "059c77a0bebd8a7be116d693dc9368cd4828d7354cb9e1bea9e53aa8dfea2fac"
+  ],
+  "source": "sealed research record"
+ },
+ "outcome": {
+  "criteria_met": "none",
+  "result_files": [
+   {
+    "path": "real/RESULTS_CONF4.md",
+    "sha256": "613055a5967c6ac33a2eb591cede9814f8ed99e6b4a664a4081066d722d9048a"
+   }
+  ],
+  "summary": "Met in 1 of 4 rows: AI agents (ReAct) 6.7k vs 12.0k tokens, -44 %, p 4.9e-16; other rows no difference. Both sides had the compiled operators, so this measured what the text adds on top of them."
+ },
+ "prediction": {
+  "criteria": "At least 3 of 4 rows at Holm p < 1e-5, no harm, use >= 25 %, above the floor (PREREG_CONF4.md)"
+ },
+ "purpose": "Does the RSOS language as text make better decision programs? Three RSOS agents vs three control agents, same compiled operator channels.",
+ "rsc": "1.2",
+ "run": {
+  "run_id": "45659293703",
+  "started_at": "2026-11-25T16:56:11Z",
+  "where": "GitHub Actions, r-a-elu-architecture/RSOS-Multimodal-World"
+ },
+ "seal": {
+  "commit": "a53eac952c81d4c4566e0f8564e2566b4a3ab748",
+  "files": [
+   {
+    "path": "real/seed.py",
+    "sha256": "51813143cfbeec90aff64b55afd1ea41df156c6f837f8d27b5f333291ee4ce8b"
+   },
+   {
+    "path": "real/seed3.py",
+    "sha256": "472845a35c7e72e1d704a01b3a4de90019a3a212f44d81d841a227865f62838f"
+   },
+   {
+    "path": "real/seed3_ops.py",
+    "sha256": "d846d20461a77e7f046b5bb978b1a86d853d4e678bf2909a17f838805c71d70c"
+   },
+   {
+    "path": "real/hosts/ai_agents.py",
+    "sha256": "83a346ba88af30447b8556c2dd7f56068a32c45b3ace2f8b8d402ad7925b4594"
+   },
+   {
+    "path": "real/hosts/ai_agents_blind.py",
+    "sha256": "18209eeb1bfb761838632fe673e949cdb61f5cd193f669cbe7a594dc481a713c"
+   },
+   {
+    "path": "real/hosts/ai_agents_quick.py",
+    "sha256": "e798d8288c5f3293b4bc1710189ef4a1419109509a8242f6d4608f54b05e7fcf"
+   },
+   {
+    "path": "real/hosts/ai_agents_tree.py",
+    "sha256": "1f3b8cec16f496c658215adb8c6ffd077ac968d7d6f0668d57bcd38279819d49"
+   },
+   {
+    "path": "real/hosts/ai_ai.py",
+    "sha256": "6182df0838c1a1ccfa20d651c8ab3c2736186795d7e007da269cbb7163d200db"
+   },
+   {
+    "path": "real/hosts/ai_ai_quick.py",
+    "sha256": "f2347e02b22bc4fe7cb742ff9c31b08c245cf78044900237371f04769dfc035e"
+   },
+   {
+    "path": "real/hosts/ai_human.py",
+    "sha256": "af82fe72582647c83bddda0037b53d7f1248886f8aee281425c71e422d45d225"
+   },
+   {
+    "path": "real/hosts/ai_human_fetch.py",
+    "sha256": "f89f62f46fde7eac08f6507c901e6128c5d01a32b71d4436443612c04622935b"
+   },
+   {
+    "path": "real/hosts/ai_human_quick.py",
+    "sha256": "4edc1d36bc613d908aa0d545c59c53fc6d6851a72d22eb5750bdaddedfac7546"
+   },
+   {
+    "path": "real/hosts/ai_human_tree.py",
+    "sha256": "18d8ff6ef13493e184a4875812451f3ec6ff793dae0e2bff5c517edaaddadfee"
+   },
+   {
+    "path": "real/hosts/biology.py",
+    "sha256": "4c49e68562c54134207a363dbce60ba854ace7f34f5f89ddcaa373975015ca72"
+   },
+   {
+    "path": "real/hosts/biology_landing_check.py",
+    "sha256": "1a3a37bf6dc244aead3f5a55e40bb8df0f38c50321b57587ceb23e5c9282a101"
+   },
+   {
+    "path": "real/hosts/biology_quick.py",
+    "sha256": "4bb933812937e97ae682e51cb4a92d54eb665b6e2b70e20a1bba25822ead67ab"
+   },
+   {
+    "path": "real/hosts/economics.py",
+    "sha256": "2e4dd0ea882fd955317cb1e59bf1f4564e7c6070fa3a3d1e13e2748d28443ae5"
+   },
+   {
+    "path": "real/hosts/economics_fetch.py",
+    "sha256": "ff97f76fd5adb18010b6163bfb94a571b051ecca17f436c9642c80939c451f31"
+   },
+   {
+    "path": "real/hosts/economics_quick.py",
+    "sha256": "405cd86825ada90722f237db9296d730a131529b1e3cceb3fd7b43168cf6d4ab"
+   },
+   {
+    "path": "real/hosts/energy.py",
+    "sha256": "4ca6148de61ed57e4c2bc1b3e071708742d4808d59a4366b51d6f4b56ae87c0b"
+   },
+   {
+    "path": "real/hosts/energy_fetch.py",
+    "sha256": "5ebd484a6452f68fd6a55cf1c0809663d85d6e7093f2d08870c9b490db6ffcfd"
+   },
+   {
+    "path": "real/hosts/energy_quick.py",
+    "sha256": "5ffe8cb035bfc7ee139206a24459e78bcdd15564f4b1b34c6097916f767ecf84"
+   },
+   {
+    "path": "real/hosts/llm_bounded.py",
+    "sha256": "53d9f24c262a3f428a33b1a738def924b7d94d5f360535971845ffb6d1f9ed91"
+   },
+   {
+    "path": "real/hosts/neuro.py",
+    "sha256": "0d19948caea9a24ab4b884f6c5a98099bfd6480115d326ad40c547239e8a4d00"
+   },
+   {
+    "path": "real/hosts/neuro_fetch.py",
+    "sha256": "0de6440a836dbf47d0f9764f871fd715333e2a677a66a0d66ba1f0e1a909a954"
+   },
+   {
+    "path": "real/hosts/neuro_quick.py",
+    "sha256": "ed2e62408edeef20aba313517f591aaaac28cd637e5916415a7368337b7018a5"
+   },
+   {
+    "path": "real/hosts/quantum.py",
+    "sha256": "fda9d7692eb006034d27a0a3629d83c02e6b43960408e4028caa1ba0c155f4d4"
+   },
+   {
+    "path": "real/hosts/quantum_quick.py",
+    "sha256": "33b46e46c41452bcbd5bd963a17270896d2d886982121a9f251c22384db5b673"
+   },
+   {
+    "path": "real/hosts/robotics.py",
+    "sha256": "552ce00d657180bcdd4886f0eb6999d71270c6c0a2a75cf1238a10ff8251fd38"
+   },
+   {
+    "path": "real/hosts/robotics_quick.py",
+    "sha256": "38d857a0d2ca804b714a240055262a3b5be4e4f196c8be944657594db006edc8"
+   },
+   {
+    "path": "real/hosts/space.py",
+    "sha256": "9f5746726dce81e2df2c00008c245bbe5a2599a78c0bec97178ea9c8df630264"
+   },
+   {
+    "path": "real/hosts/space_fetch.py",
+    "sha256": "1e9757ec1ccd228308bcb913a65a173e5d461f250c21cf8d9aa9abdb3891d870"
+   },
+   {
+    "path": "real/hosts/space_quick.py",
+    "sha256": "8b23a3d1d3956cf2c46e04b63589db57e9f9e7d5eaca4960706cfd991fe95d7e"
+   },
+   {
+    "path": "cloud/real3_unit.py",
+    "sha256": "1765985482890091c96d6985bb483dec20a1f63b61e92681dee8b9d6104ed177"
+   },
+   {
+    "path": "real/analyze_real3.py",
+    "sha256": "7ca64ecc1ec7dbe0ae4f9ce8c1bd7674b80cb782905d4e573a8f5aa03cbf8b8d"
+   },
+   {
+    "path": "real/PREREG_REAL3.md",
+    "sha256": "5d21f43e0faba1b91ad0acc47b996a8ceec0b705cffa91a0df0f85b82e9a4026"
+   },
+   {
+    "path": ".github/workflows/rsos_real3_s1.yml",
+    "sha256": "f056160c7e1ac80cdef9ec6c835cf83ba334db7da4b7a1cb5ffa77a55c9d3639"
+   },
+   {
+    "path": ".github/workflows/rsos_real3_s2.yml",
+    "sha256": "0398d1965e4a3fe207859e45f12d6dd6ad5e5949ba43a92a7f974819c200960c"
+   },
+   {
+    "path": "real/PREREG_REAL3_FIX1.md",
+    "sha256": "a9a4de4953ca25db88a113e962cbdbcea2b3ae41b262d64f675fa31750ed7cae"
+   },
+   {
+    "path": "cloud/real3_unit_fix1.py",
+    "sha256": "589e4cca2e7ce091c0ccbb09eb11702617471bb3d637a3444d129f48c4a78928"
+   },
+   {
+    "path": "real/hosts/data/space_tle_frozen.txt",
+    "sha256": "adc60fc7d0d46ae11c1330e1d09a78a00ac29b6701551720ae418f2cc9bfe037"
+   },
+   {
+    "path": "real/hosts/data/space_tle_frozen.meta.json",
+    "sha256": "15f0bae61ce2f33c895c335c94bdeff1bba7075aa751c6f6cce4b0c705663fb5"
+   },
+   {
+    "path": "experiments/agents/llm.py",
+    "sha256": "716c301847ab4674f1735edde360a3ddb6cb98b8412e18a6b8b9fcbdc7c7fe9f"
+   },
+   {
+    "path": "experiments/agents/tasks.py",
+    "sha256": "c07ff0610d3d525ebe1582ccc10ce871f43fba315a927789479c7cd96f30fcd1"
+   },
+   {
+    "path": "experiments/agents/agent.py",
+    "sha256": "53397a85fcd8bd6c47591e60feb5b3e72132b4f9d276965153489292d9376f33"
+   },
+   {
+    "path": "real/hosts/data/ai_agents_tree.json",
+    "sha256": "3f7b1afafbfe1ff766e1e4d4eae3ca60472471f84306e081325d6d64499044d2"
+   },
+   {
+    "path": "real/hosts/data/household_load_uci_hourly.csv",
+    "sha256": "7195b2765721906d8a90db861eb8224e6531d3ea22e7657cf9f738b4ff00140a"
+   },
+   {
+    "path": "real/hosts/data/topical_chat/.gitignore",
+    "sha256": "240a3e0d37d2e86b614063f5347eb02d4f99ca6c254de6b82871ff8d95532a7d"
+   },
+   {
+    "path": "real/hosts/data/walmart_sales_weekly.csv",
+    "sha256": "4d7b1a97a1605b07f0c51c39127d2131da01febcba04168ded49f0c1d0747123"
+   },
+   {
+    "path": "cloud/conf4_unit.py",
+    "sha256": "5a497fc42a08dbd51d782e51139bfa008eeb1b9a2e343aa1990a87329c4df8dc"
+   },
+   {
+    "path": "real/analyze_conf4.py",
+    "sha256": "ec6785f0524050737be964cc952f0fbbeca89fbe02fea7096ef2418218713966"
+   },
+   {
+    "path": "real/PREREG_CONF4.md",
+    "sha256": "72cce399cc63552d506e3821b7fae2f0787af10eb6652c6aa6eb607ffc60aa1b"
+   },
+   {
+    "path": ".github/workflows/rsos_conf4.yml",
+    "sha256": "3da544664eb26dc89c9a43193f1210bc36f7f92a8c80f8888700fe922610f66c"
+   },
+   {
+    "path": "reproduce_conf4.sh",
+    "sha256": "a6eff6a016c09e934af6522fc9b25f45132f4b361c77eb5ce76f3481d7ac94c7"
+   },
+   {
+    "path": "real/conf4/DOMAINS.md",
+    "sha256": "1f2370e9a044dac091f51b72c827656aed637c898b9d5d9072c60bbb28f8513a"
+   },
+   {
+    "path": "real/conf4/C1/ai_agents_moves.py",
+    "sha256": "cc6f75bd9521b405af3d6d39cd6aa3985f1a1d08b125d437cde02808b99900fe"
+   },
+   {
+    "path": "real/conf4/C1/ai_ai_moves.py",
+    "sha256": "a4def4c4f1fd4adab6fe003ac15bcbf7e41b88e7351b2f6c2a68808af9c2ce5d"
+   },
+   {
+    "path": "real/conf4/C1/ai_human_moves.py",
+    "sha256": "210a5ac0075010970767900635aa8e8312e9d97569b6478c0d70cd19c5232671"
+   },
+   {
+    "path": "real/conf4/C1/space_moves.py",
+    "sha256": "e591d11031a0f6a0cc804279c78ac136e5d09d47c09a40a8d19e130226a6af28"
+   },
+   {
+    "path": "real/conf4/C2/ai_agents_moves.py",
+    "sha256": "9678de8469ec020470bc7316bfb6020c2253464031d1ee33df5e68764d30d541"
+   },
+   {
+    "path": "real/conf4/C2/ai_ai_moves.py",
+    "sha256": "62983fadf13961583c2a91052f36c89fd765451ff8480d25321ffc42eba617bd"
+   },
+   {
+    "path": "real/conf4/C2/ai_human_moves.py",
+    "sha256": "3a717dd46be6068b372ffa3d5fb35e4340b193f9d0f716d9bb5a4bd28eceb329"
+   },
+   {
+    "path": "real/conf4/C2/space_moves.py",
+    "sha256": "919cddb3916cd34cd7fd41a7a55548598b856c0605aa1852e34db2c7a697bd8f"
+   },
+   {
+    "path": "real/conf4/C3/ai_agents_moves.py",
+    "sha256": "baf3fbdcac6006fda5dba315f4248a359b5d51abdc18fa5d0016911bea16759b"
+   },
+   {
+    "path": "real/conf4/C3/ai_ai_moves.py",
+    "sha256": "fa6e2cdc2c8da8c086f554664252bd9670283ee7e4b203465788594da1c63d57"
+   },
+   {
+    "path": "real/conf4/C3/ai_human_moves.py",
+    "sha256": "99956e36c537b082c09e90d4365eb7c481abc3b865f37c4dca324064dd37afd6"
+   },
+   {
+    "path": "real/conf4/C3/space_moves.py",
+    "sha256": "a17e2b1b0ecaa734dd84875400bc3895e46b942b3801aff5fc11849d5dbcd096"
+   },
+   {
+    "path": "real/conf4/R1/ai_agents_moves.py",
+    "sha256": "7628eb59c5ee913a7fd1d91fe7bda8810b19c3245bf141f73b6264c71804b7a2"
+   },
+   {
+    "path": "real/conf4/R1/ai_ai_moves.py",
+    "sha256": "fbd83dd8110fdf623e738fa39ddf08cd9ff1f14628b5b050a3ee81171e40db1d"
+   },
+   {
+    "path": "real/conf4/R1/ai_human_moves.py",
+    "sha256": "1d2aa0b4d260a6e036da54da0195e0fb8849b2d8059ece5033fd100901da919c"
+   },
+   {
+    "path": "real/conf4/R1/space_moves.py",
+    "sha256": "84c62953a071932a70c7aba238751fc37f80daa7feebc77c35051527b7d6a95e"
+   },
+   {
+    "path": "real/conf4/R2/ai_agents_moves.py",
+    "sha256": "834f28fc87095153de1a4dc72c9eac04d841314d1a43fd8572a50dd208c888ab"
+   },
+   {
+    "path": "real/conf4/R2/ai_ai_moves.py",
+    "sha256": "713e4d97934e8064952efc01aad23dd58b0a9561683e5c4ee2195ba95ee70c3a"
+   },
+   {
+    "path": "real/conf4/R2/ai_human_moves.py",
+    "sha256": "db75df435e797a6284b222437da8dc5fea14e5b48b7774d1710d9e6ba9e780bf"
+   },
+   {
+    "path": "real/conf4/R2/space_moves.py",
+    "sha256": "97a581b383c760382f9d397c67c8510cb5bc50cb94cff2f1157b6913979dd1ae"
+   },
+   {
+    "path": "real/conf4/R3/ai_agents_moves.py",
+    "sha256": "99ae6b121f585cea0b0c564eb7ba950a5a12639be0b4304e9afeaf0c1990ff25"
+   },
+   {
+    "path": "real/conf4/R3/ai_ai_moves.py",
+    "sha256": "054a7eb683f0d78b5983875bf70f445398ee901a032a7c9ee3aa51260fe14ce8"
+   },
+   {
+    "path": "real/conf4/R3/ai_human_moves.py",
+    "sha256": "149c8436c5ed111e7bce8c9cc438117e69b33fb5b405596116b7b7aeabdf2341"
+   },
+   {
+    "path": "real/conf4/R3/space_moves.py",
+    "sha256": "86ce08fcc17798f5af89926eaadbf814c1c39f66c5fa0fbe192a80fe88dcbfd2"
+   }
+  ],
+  "seal_file": "real/SEAL_CONF4.txt",
+  "sealed_at": "2026-11-25T16:55:57Z"
+ },
+ "title": "CONF4: programs by an AI given the RSOS sources vs the same AI without them",
+ "type": "claim"
+}

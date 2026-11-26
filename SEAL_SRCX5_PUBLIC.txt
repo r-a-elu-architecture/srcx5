@@ -1,0 +1,15 @@
+# SEAL SRC-X.5 v1.3, public log 2026-11-26T06:30:27Z: the 10-entry public log (9 sealed tests + launch proofs).
+# The launch forecast (entry 11) is kept private: corpus/protocol_private/FORECAST_LAUNCH.json; the 11-entry log stays in commit 95220600 (protocol/SEAL_SRCX5.txt). The 10 lines here are an exact byte prefix of that log, so no other record or id changed.
+a9ab235167f050fb8b56a45ce60f0cb26cffff1f055810c3328cfefed56ea5a1  protocol/srcx5.py
+4c1b45cb94e0a1b57072e92cca61e6f248a65a6f72006a8e217f6a4ee6d94962  protocol/SPEC_SRCX5.md
+1e5e2eecfbe23dc89d48fa39b05e4a778a50f3efd257b130fdfc237cd0fc6abe  protocol/README.md
+5a30e3271a43a56c90a96db75ba365b6aff93f00d547364242a6f24077a20d8c  protocol/site/index.html
+4c1b45cb94e0a1b57072e92cca61e6f248a65a6f72006a8e217f6a4ee6d94962  protocol/site/SPEC.md
+755fcddecbd99410aa31543d33bea0f8cf6b0f867222926030d3243fffdd84db  protocol/site/api/head.json
+709d9d6a4ce023741a4f813bb668613ddece9e98a9401aa656b702423051afc7  protocol/LAUNCH_POST.md
+932316795168700bf97802cc938c34c8ccc0e7c9c095f42124c771efd2ee488e  protocol/deploy/Dockerfile
+926318936c9d5df724cc7f7602a40c6c129dae965ac6c1f1699c324cb876ea51  protocol/deploy/HUGGINGFACE_SPACE.md
+79622ab2f55e9315dbda6fccd2d5f7ac6176bba6302423ba35254fd815c36697  protocol/.github/workflows/pages.yml
+e7271fcd44579f2ea3b40e8ecc093cf089330a5c98053c2423bc906c2cd43fa3  protocol/.github/workflows/admission.yml
+ba200d670c5abebfe6730adbfcdd3e875a66c376f7391d7cd953ae30044c0628  protocol/log/log.jsonl
+96336fa20abe94d182bdcc5f30fb864195e6aff71a5a498c816ca43a8c31ce05  protocol/records/INDEX.json

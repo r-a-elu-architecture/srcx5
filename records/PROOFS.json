@@ -1,0 +1,79 @@
+{
+ "seal": {
+  "seal_file": "protocol/tests/SEAL_RSC.txt",
+  "commit": "59f9c5d6",
+  "sealed_at": "2026-11-26T05:39:47Z",
+  "files": [
+   {
+    "path": "protocol/rsc.py",
+    "sha256": "1ccabfbd2331a0a6619617790ca9eebe63f649c264d7eb8a40aed6d65d997b47"
+   },
+   {
+    "path": "protocol/tests/launch_proofs.py",
+    "sha256": "3e93adf2c56ed28e2e0a798c361951626a526a24d61c41fdd7a6a16dda7f044a"
+   },
+   {
+    "path": "protocol/tests/proofs_checks.py",
+    "sha256": "7d73995ef08a307176e4ad951155c4c7fb2c07fc21524d1c550f03550a40f04c"
+   },
+   {
+    "path": "protocol/tests/PREDICTIONS.md",
+    "sha256": "cd954d4a486ed6bb44d01a68925e8a7b6130c1b8b73cc333c402edce86d960d6"
+   },
+   {
+    "path": "protocol/SPEC.md",
+    "sha256": "e72c34a7996fddf8349a008733d0b80d8808b18a78cddb92671140d3483796a7"
+   }
+  ]
+ },
+ "consent_harm": {
+  "personal_data": false,
+  "harm_reports": []
+ },
+ "evidence": "simulated",
+ "declarations": {
+  "affects_people": false,
+  "predicted_harm": 0,
+  "serves_mission": true
+ },
+ "type": "claim",
+ "title": "RSC v1.2 launch proofs: admission, checks, supersede, peer audit, sync",
+ "purpose": "Does the protocol quarantine what fails its checks without blocking anything valid, keep identity through supersede, see a corrupted peer, and sync only what is missing?",
+ "prediction": {
+  "criteria": "Five sets of criteria fixed in tests/PREDICTIONS.md before the confirming runs (seed 3)"
+ },
+ "run": {
+  "run_id": "launch-proofs-3",
+  "started_at": "2026-11-26T05:40:47Z",
+  "where": "local, reference implementation"
+ },
+ "outcome": {
+  "criteria_met": "all",
+  "summary": "Admission 600/600 quarantined, 0/200 valid blocked, storage edit detected; every check 30/30 quarantined and named; supersede kept identity; only the edited peer flagged; sync converged moving only what was missing.",
+  "result_files": [
+   {
+    "path": "protocol/tests/out/admission_3.json",
+    "sha256": "1189cd39b618a885ac4c535e7e7ec38177fd25e43fdfdbb934431ed5c5e09468"
+   },
+   {
+    "path": "protocol/tests/out/checks_3.json",
+    "sha256": "0de929282024dd12dde95b732378cdfce6da630e121e2e6cd992ad12dca7da6c"
+   },
+   {
+    "path": "protocol/tests/out/sync_3.json",
+    "sha256": "a7f1b446386dcc722b323c5f3bdf4044d8be86615cea1ce91fa3b73e4ab2131d"
+   },
+   {
+    "path": "protocol/tests/RESULTS.md",
+    "sha256": "76e92211c9b165f35d78cad0e1d759c49ee454b29cb6d77aaa938b27ff7727f6"
+   }
+  ]
+ },
+ "lineage": {
+  "parents": [
+   "ed3a1660eb64c5615ff54429ffaf04442b0ed066e63358f5c2c6c5f7eeae76eb"
+  ]
+ },
+ "rsc": "1.2",
+ "id": "ff460c82eb467497caecc48aa2c7f260f9cfc272ff13db503cffd30608a09a2c"
+}

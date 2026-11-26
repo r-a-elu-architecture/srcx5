@@ -1,0 +1,153 @@
+{
+ "type": "claim",
+ "title": "CONF6: the whole AI-AI system bound to one RSOS structure vs plain rollout",
+ "purpose": "Does binding the whole two-agent system to one structure beat RSOS-free planning on accuracy and tokens?",
+ "prediction": {
+  "criteria": "Accuracy gain and tokens saved vs plain rollout both at Holm p < 1e-5, no harm vs the standard, 200 fresh cells (PREREG_CONF6.md)"
+ },
+ "seal": {
+  "seal_file": "real/SEAL_CONF6.txt",
+  "commit": "23a5e633619b140fbda1d6d0a660cb7b4f058e3c",
+  "sealed_at": "2026-11-26T04:03:59Z",
+  "files": [
+   {
+    "path": ".github/workflows/rsos_conf6.yml",
+    "sha256": "32612387608ca777a9b336559071b67a28ff8c4949aaf682e8d6bef3b4fb44d0"
+   },
+   {
+    "path": "cloud/conf6_unit.py",
+    "sha256": "b8084136b4dfc62fe12a11bc2173655651a747400ffe14f5be1e19088b919487"
+   },
+   {
+    "path": "experiments/agents/llm.py",
+    "sha256": "716c301847ab4674f1735edde360a3ddb6cb98b8412e18a6b8b9fcbdc7c7fe9f"
+   },
+   {
+    "path": "real/PREREG_CONF6.md",
+    "sha256": "5a90c198d66b2629d6f18a3f868bcf7fc917e9a1853e4da3e5284c2bbd5be9d0"
+   },
+   {
+    "path": "real/analyze_conf6.py",
+    "sha256": "3f15942fec46def61fdb089a695fb52def08f89b1775d7fab55097195f0d3ac8"
+   },
+   {
+    "path": "real/hosts/ai_ai.py",
+    "sha256": "6182df0838c1a1ccfa20d651c8ab3c2736186795d7e007da269cbb7163d200db"
+   },
+   {
+    "path": "real/hosts/llm_bounded.py",
+    "sha256": "53d9f24c262a3f428a33b1a738def924b7d94d5f360535971845ffb6d1f9ed91"
+   },
+   {
+    "path": "real/pilot/PILOT2_NOTES.md",
+    "sha256": "ea52c249a8115f85cb58a2491d582af6a745565385be53569866ea4282395fc2"
+   },
+   {
+    "path": "real/pilot/out2/ai_ai_rollout_13_16.json",
+    "sha256": "8a3e700f1c4f9d45686594e3ba3b67de54264ecb6970fc58d7e5450f4688232e"
+   },
+   {
+    "path": "real/pilot/out2/ai_ai_rollout_1_4.json",
+    "sha256": "15b150d4bdf2f2588e27f914a196621429d97562f4e9d7aeef359ae4077f4ca4"
+   },
+   {
+    "path": "real/pilot/out2/ai_ai_rollout_5_8.json",
+    "sha256": "80281a69097e60e00b7645fef02cea5630e5bd753638c4a720b1fe55a923e87d"
+   },
+   {
+    "path": "real/pilot/out2/ai_ai_rollout_9_12.json",
+    "sha256": "78a425cbb57bb3fc19cf4b8cde47c0cc6a0422ea53fbbe8beee578dacbb4d3ff"
+   },
+   {
+    "path": "real/pilot/out2/ai_ai_v1_13_16.json",
+    "sha256": "636ca789bc68ab179dd710bf5426c93f75e743bae8b5601c1ae10469a0391023"
+   },
+   {
+    "path": "real/pilot/out2/ai_ai_v1_1_4.json",
+    "sha256": "fa267c668b50f40650c1c45fc8aed059a9dbe0ebf49ce08340accc11b745bbdc"
+   },
+   {
+    "path": "real/pilot/out2/ai_ai_v1_5_8.json",
+    "sha256": "cb967f648138f29946f2d1528218fd30088c6af163efccbda8ed660139f1d14c"
+   },
+   {
+    "path": "real/pilot/out2/ai_ai_v1_9_12.json",
+    "sha256": "43d931eda0c11cb5f70097cf191688483c6f6b5250c9007dea4aaf01b9d2d905"
+   },
+   {
+    "path": "real/pilot/out2/ai_ai_whole_13_16.json",
+    "sha256": "c10f30fdcee622897c4b740536f69466a94b86cbf57b2316f1849594291c23b7"
+   },
+   {
+    "path": "real/pilot/out2/ai_ai_whole_1_4.json",
+    "sha256": "e892c278afc3aa752fd156646b8a75c748d5ef1e7221c549b99c6ea8e6f55a2a"
+   },
+   {
+    "path": "real/pilot/out2/ai_ai_whole_5_8.json",
+    "sha256": "0e1f20b42fc86344e4f39aa1f504cb0f029b4c82e5b2eedd8d79846ca60b6811"
+   },
+   {
+    "path": "real/pilot/out2/ai_ai_whole_9_12.json",
+    "sha256": "84b1572a70a8f0d85ceb4dafa221f0b2121e576d355cb3ac080e7f2ee8e5e431"
+   },
+   {
+    "path": "real/pilot/pilot2_whole.py",
+    "sha256": "74150d4d5739578ed1ecd884f82d2fee295994de5e41c0ee1fd065e966c0b1df"
+   },
+   {
+    "path": "real/seed.py",
+    "sha256": "51813143cfbeec90aff64b55afd1ea41df156c6f837f8d27b5f333291ee4ce8b"
+   },
+   {
+    "path": "real/seed3.py",
+    "sha256": "472845a35c7e72e1d704a01b3a4de90019a3a212f44d81d841a227865f62838f"
+   },
+   {
+    "path": "real/seed3_ops.py",
+    "sha256": "d846d20461a77e7f046b5bb978b1a86d853d4e678bf2909a17f838805c71d70c"
+   },
+   {
+    "path": "reproduce_conf6.sh",
+    "sha256": "cd983655c9f6aebd5ded6c256b34b056de6ea3d06ccac1eb87c285adc10db078"
+   }
+  ]
+ },
+ "run": {
+  "run_id": "45752828112",
+  "started_at": "2026-11-26T04:04:05Z",
+  "where": "GitHub Actions, r-a-elu-architecture/RSOS-Multimodal-World"
+ },
+ "outcome": {
+  "criteria_met": "all",
+  "summary": "Accuracy 1.000 vs 0.875 (25 better, 0 worse; Holm p 1.3e-7); tokens 1,286 vs 2,645, -51 % (180/200; p 5.1e-28); no harm. Compact-message arm switched off: no difference.",
+  "result_files": [
+   {
+    "path": "real/RESULTS_CONF6.md",
+    "sha256": "4126d768b7eac76aed95ca77b03f4806a600ef105121f2829f218ee729a74617"
+   },
+   {
+    "path": "real/pilot/PILOT2_NOTES.md",
+    "sha256": "ea52c249a8115f85cb58a2491d582af6a745565385be53569866ea4282395fc2"
+   }
+  ]
+ },
+ "lineage": {
+  "parents": [
+   "e4b7ae16a3de73a82350a815f2bc31db711ca129f1ed374f0dd4c52823bcb092"
+  ],
+  "source": "sealed research record"
+ },
+ "consent_harm": {
+  "personal_data": false,
+  "harm_reports": []
+ },
+ "evidence": "both",
+ "declarations": {
+  "affects_people": false,
+  "predicted_harm": 0,
+  "serves_mission": true,
+  "note": "AI, data and simulated hosts; no living participants"
+ },
+ "rsc": "1.2",
+ "id": "ed3a1660eb64c5615ff54429ffaf04442b0ed066e63358f5c2c6c5f7eeae76eb"
+}

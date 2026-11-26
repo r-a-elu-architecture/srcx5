@@ -1,0 +1,13 @@
+{
+ "records": 309,
+ "full_copy_bytes": 2429453,
+ "B_added": 155,
+ "B_bytes": 1221414,
+ "B_share_of_full": 0.502752677248747,
+ "C_added": 309,
+ "C_bytes": 2450465,
+ "C_recheck_added": 0,
+ "C_recheck_bytes": 21012,
+ "converged": true,
+ "chains_intact": true
+}

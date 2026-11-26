@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>SRC-X.5: the open record of sealed claims</title>
+<style>
+:root{--bg:#fbfbf9;--fg:#1c1d1f;--mut:#5d6168;--line:#e3e2dc;--ok:#1f7a4d;--bad:#b3261e;--part:#8a6a00;--acc:#0f6f86}
+@media (prefers-color-scheme:dark){:root{--bg:#141517;--fg:#ececea;--mut:#a3a7ad;--line:#2b2d31;--ok:#5cc28f;--bad:#f07f78;--part:#e2b84a;--acc:#55c1d8}}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.55 system-ui,-apple-system,Segoe UI,Roboto,sans-serif}
+main{max-width:1040px;margin:0 auto;padding:40px 20px 80px}h1{font-size:30px;margin:0 0 6px;letter-spacing:-.01em}
+.lead{color:var(--mut);max-width:760px}.bar{display:flex;gap:18px;flex-wrap:wrap;margin:22px 0;color:var(--mut);font-size:14px}
+.bar b{color:var(--fg)}table{width:100%;border-collapse:collapse;margin-top:10px}th,td{text-align:left;padding:10px 8px;border-top:1px solid var(--line);vertical-align:top;font-size:14.5px}
+th{font-weight:600;color:var(--mut);font-size:13px}.pill{display:inline-block;padding:1px 8px;border-radius:10px;font-size:12.5px;border:1px solid currentColor}
+.ev{color:var(--acc)}.all{color:var(--ok)}.partly{color:var(--part)}.none{color:var(--mut)}.v-ok{color:var(--ok)}.v-bad{color:var(--bad)}
+code{font:13px ui-monospace,Menlo,Consolas,monospace}.id{color:var(--mut)}details{margin-top:4px}summary{cursor:pointer;color:var(--acc)}
+pre{white-space:pre-wrap;word-break:break-word;background:transparent;border:1px solid var(--line);padding:10px;border-radius:6px;font-size:12.5px;max-height:320px;overflow:auto}
+a{color:var(--acc)}h2{font-size:19px;margin-top:40px}
+</style></head><body><main>
+<h1>SRC-X.5</h1>
+<p class="lead">An open record of claims that anyone can check. Each record states what was predicted and by which
+criteria, which files were fixed and when, when it ran, and what came out. Every record passes seven checks; what fails is quarantined, never published, and nothing is deleted. This page re-checks every record
+<b>in your browser</b>: it recomputes each record's identity with SHA-256 and verifies the chain, without trusting the server.</p>
+<div class="bar"><span>Records: <b id="n">…</b></span><span>Chain: <b id="chain">checking…</b></span><span>Head: <code id="head">…</code></span><span>Protocol: <a href="SPEC.md">specification v1.3</a></span></div>
+<table><thead><tr><th>Claim</th><th>Pre-registered criteria</th><th>Evidence · sealed → ran</th><th>Identity</th></tr></thead><tbody id="rows"></tbody></table>
+<h2>Check or add a record yourself</h2>
+<pre>python srcx5.py verify record.json --repo &lt;checkout&gt;     # every fingerprint, byte for byte
+python srcx5.py serve --log mylog --peer &lt;node&gt;          # run your own node; it syncs only what it lacks
+python srcx5.py replicate &lt;id&gt; --by &lt;handle&gt; --outcome all --summary "re-ran it"</pre>
+</main><script>
+const canon = v => Array.isArray(v) ? "[" + v.map(canon).join(",") + "]" :
+  (v && typeof v === "object") ? "{" + Object.keys(v).sort().map(k => JSON.stringify(k) + ":" + canon(v[k])).join(",") + "}" : JSON.stringify(v);
+async function sha(s){const b=await crypto.subtle.digest("SHA-256",new TextEncoder().encode(s));return [...new Uint8Array(b)].map(x=>x.toString(16).padStart(2,"0")).join("")}
+const esc = s => String(s ?? "").replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const day = s => s ? s.replace("T"," ").slice(0,16) + " UTC" : "–";
+(async()=>{
+  let log; try { log = await (await fetch("api/log.json")).json(); } catch(e){ document.getElementById("chain").textContent="log not found"; return; }
+  let prev = "0".repeat(64), ok = true; const rows = []; const gone = new Set(log.map(e => e.record.supersedes).filter(Boolean));
+  for (const [i,e] of log.entries()) {
+    const {entry_hash, ...rest} = e; const eh = await sha(canon(rest));
+    const {id, ...body} = e.record; const rid = await sha(canon(body));
+    const good = eh === entry_hash && e.prev === prev && e.seq === i && rid === id; ok = ok && good; prev = entry_hash;
+    const r = e.record, oc = (r.outcome||{}).criteria_met || "pending"; if (gone.has(id)) continue;   // superseded: in the chain, not in the active set
+    const label = {all:"all met", partly:"partly met", none:"not met", pending:"pending"}[oc];
+    rows.push(`<tr><td><b>${esc(r.title)}</b><details><summary>record</summary><pre>${esc(JSON.stringify(r,null,1))}</pre></details></td>
+      <td><span class="pill ${oc}">${label}</span><div>${esc((r.outcome||{}).summary)}</div></td>
+      <td><span class="pill ev">${esc(r.evidence||"")}</span><br>${day((r.seal||{}).sealed_at)}<br>→ ${day((r.run||{}).started_at)}</td>
+      <td class="${good?"v-ok":"v-bad"}">${good?"verified":"MISMATCH"}<br><code class="id">${id.slice(0,12)}…</code></td></tr>`);
+  }
+  document.getElementById("rows").innerHTML = rows.join("");
+  document.getElementById("n").textContent = `${rows.length} active · ${log.length} in the chain`;
+  document.getElementById("chain").textContent = ok ? "intact, verified here" : "BROKEN";
+  document.getElementById("chain").className = ok ? "v-ok" : "v-bad";
+  document.getElementById("head").textContent = (log.length ? log[log.length-1].entry_hash : prev).slice(0,16) + "…";
+})();
+</script></body></html>

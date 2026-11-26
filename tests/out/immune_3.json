@@ -1,0 +1,75 @@
+{
+ "seed": 3,
+ "valid": 200,
+ "false_blocks": 0,
+ "attacks": 600,
+ "caught": 600,
+ "catch_rate": 1.0,
+ "false_block_rate": 0.0,
+ "by_class": {
+  "tampered after the id was set": [
+   40,
+   40
+  ],
+  "forged id": [
+   40,
+   40
+  ],
+  "back-dated seal (sealed after the run)": [
+   40,
+   40
+  ],
+  "no fingerprinted files": [
+   40,
+   40
+  ],
+  "invalid fingerprint": [
+   40,
+   40
+  ],
+  "unknown lineage parent": [
+   40,
+   40
+  ],
+  "no pass criteria": [
+   40,
+   40
+  ],
+  "outcome without a run time": [
+   40,
+   40
+  ],
+  "wrong protocol version": [
+   40,
+   40
+  ],
+  "personal data: email": [
+   40,
+   40
+  ],
+  "personal data: phone": [
+   40,
+   40
+  ],
+  "personal data: card": [
+   40,
+   40
+  ],
+  "personal data: IBAN": [
+   40,
+   40
+  ],
+  "declares personal data": [
+   40,
+   40
+  ],
+  "replication of an unknown record": [
+   40,
+   40
+  ]
+ },
+ "chain_intact_before_tamper": true,
+ "tamper_detected_at": [
+  7
+ ]
+}
