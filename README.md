@@ -14,11 +14,11 @@ by anyone who can compute SHA-256. Each layer connects through its own main stan
 |---|---|
 | A person | the [browser viewer](https://r-a-elu-architecture.github.io/srcx5/): every record re-checked on your machine; add a record by [opening an issue](https://github.com/r-a-elu-architecture/srcx5/issues/new?template=submit-record.yml) (no git needed) |
 | A tool or company system | HTTP and JSON: `openapi_v15.json` (OpenAPI 3.1, the format agent platforms import as actions or tools), [`schema/record.schema.json`](schema/record.schema.json) |
-| A cloud AI agent | MCP over HTTP: `POST <node>/mcp` (Streamable HTTP; tools list, get, verify, verify the log, submit, linked-data view) |
+| A cloud AI agent | MCP over HTTP: `POST https://rsos-srcx5.hf.space/mcp` (or any node; Streamable HTTP; tools list, get, verify, verify the log, submit, linked-data view) |
 | A local AI client | MCP over stdio: `python srcx5_mcp.py --log log`, or `docker run -i --rm ghcr.io/r-a-elu-architecture/srcx5 mcp` |
 | Another agent | Agent2Agent (A2A): `<node>/.well-known/agent-card.json`, JSON-RPC at `POST <node>/a2a` |
 | A research or linked-data tool | JSON-LD in the W3C PROV vocabulary: `api/ld/<id>.jsonld`, [`context.jsonld`](context.jsonld) |
-| A node operator, anywhere | `docker run -p 7860:7860 ghcr.io/r-a-elu-architecture/srcx5`, or `pip install git+https://github.com/r-a-elu-architecture/srcx5` then `srcx5-node serve --log log`; list it in [`NODES.json`](NODES.json) with one pull request |
+| A node operator, anywhere | `docker run -p 7860:7860 ghcr.io/r-a-elu-architecture/srcx5`, or `pip install srcx5` then `srcx5-node serve --log log`; list it in [`NODES.json`](NODES.json) with one pull request |
 | A network with long delays or broken links | records are self-contained bundles: store, forward, verify on arrival |
 | A ledger, archive or content-addressed network | the head is anchored on Bitcoin (OpenTimestamps, [`anchors/`](anchors/)); the read API's IPFS content id is in `api/status.json`; Zenodo and Software Heritage keep it citable |
 
