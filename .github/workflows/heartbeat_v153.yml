@@ -1,7 +1,7 @@
-# v1.5.2 FIX3 (tests/v15/FIX3_V15.md): replaces heartbeat_v151.yml, kept unchanged in the private record.
+# v1.5.3 FIX4 (tests/v15/FIX4_V15.md): replaces heartbeat_v152.yml, kept unchanged in the private record.
 # v1.5: the network signalling. Every six hours: pull admitted records from every listed node (write anywhere, converge
 # everywhere), then republish the status document (mirrors, nodes, Bitcoin proof, IPFS content id) with the read API.
-name: srcx5-heartbeat-v152
+name: srcx5-heartbeat-v153
 on:
   schedule:
     - cron: "23 */6 * * *"
@@ -23,4 +23,4 @@ jobs:
         run: |
           git config user.name srcx5-heartbeat; git config user.email srcx5-heartbeat@users.noreply.github.com
           if ! git diff --quiet log; then git add log && git commit -qm "heartbeat: records pulled from nodes" && git push -q && gh workflow run anchor_v141.yml || true; fi
-          gh workflow run pages_v152.yml
+          gh workflow run pages_v153.yml

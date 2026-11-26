@@ -1,0 +1,46 @@
+# v1.5.3 FIX4 (tests/v15/FIX4_V15.md): replaces pages_v152.yml, kept unchanged in the private record.
+# The IPFS content id is computed in its own job and handed to the deploy job as an output; the deploy job never runs
+# the IPFS tool. The id covers the read API without status.json (export with --no-probe, same commit).
+name: srcx5-pages-v153
+on:
+  push:
+    branches: [main]
+    paths: ["log/**", "site/**", "anchors/**", ".github/workflows/pages_v153.yml", "SPEC_SRCX5_1_4_1.md", "srcx5_net.py", "srcx5_node.py", "openapi.json", "schema/**", "context.jsonld", "MIRRORS.json", "NODES.json", "llms.txt"]
+  workflow_dispatch:
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+concurrency: {group: pages, cancel-in-progress: true}
+jobs:
+  ipfs:
+    runs-on: ubuntu-latest
+    timeout-minutes: 6
+    continue-on-error: true
+    outputs:
+      cid: ${{ steps.c.outputs.cid }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: "3.12"}
+      - id: c
+        run: |
+          python srcx5_node.py export --log log --out /tmp/api --anchors anchors --no-probe
+          curl -sfL --retry 3 --max-time 120 https://github.com/ipfs/kubo/releases/download/v0.32.1/kubo_v0.32.1_linux-amd64.tar.gz | tar xz -C /tmp
+          /tmp/kubo/ipfs init >/dev/null
+          CID=$(/tmp/kubo/ipfs add -r -Q --cid-version 1 --only-hash /tmp/api) && echo "cid=$CID" >> $GITHUB_OUTPUT && echo "$CID"
+  deploy:
+    needs: ipfs
+    if: always()
+    runs-on: ubuntu-latest
+    environment: {name: github-pages}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: "3.12"}
+      - run: cp SPEC_SRCX5_1_4_1.md site/SPEC.md && cp llms.txt site/llms.txt && python srcx5.py check-log --log log
+      - run: python srcx5_node.py export --log log --out site/api --anchors anchors --ipfs "${{ needs.ipfs.outputs.cid }}"
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with: {path: site}
+      - uses: actions/deploy-pages@v4

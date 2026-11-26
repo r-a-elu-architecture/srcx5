@@ -1,0 +1,9 @@
+# SEAL SRC-X.5 v1.5 FIX4 2026-11-26T13:25:52Z: IPFS id in its own job, fixed before D3 is observed again (tests/v15/FIX4_V15.md).
+11dbce30a95241183da563eb5e430f19602a2b2dc63baeba3c61c02c3545c59c  protocol/.github/workflows/pages_v153.yml
+40ba662969c66c4584522b3ec6552c8c60228fcb9d4994aee7dbad1eb9e65fde  protocol/.github/workflows/heartbeat_v153.yml
+d4da52940d974756a3102933976978aaef8e43bdbda2b78f3b15e4584f7c2be5  protocol/.github/workflows/issue_submit_v153.yml
+5efd39256e5e2dc44afaed66df62c10c92ea2cae3a0f848e85aee71cb8bbaa99  protocol/.github/workflows/pages_v152.yml
+e51c68dea4837ed3bd1f61146ac87b7648a165431d481cb4b4aaacfe35478d17  protocol/.github/workflows/heartbeat_v152.yml
+26cdf038fb235a96dd8b55076c1c4515a860b5e7ee1221b44b9150f03568599e  protocol/.github/workflows/issue_submit_v152.yml
+b33b267e6ddb9243e72d28cf7f5d0b77948ab2ecd923ca06c23411894a9c1564  protocol/tests/v15/FIX4_V15.md
+43a9fa5eaa1985a03c99bcd6f2361c63ecd808fafcf3c18dfe3524a3c1723723  protocol/tests/v15/PREDICTIONS_V15.md
