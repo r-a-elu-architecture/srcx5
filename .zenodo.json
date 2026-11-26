@@ -1,0 +1,43 @@
+{
+ "upload_type": "software",
+ "title": "SRC-X.5: an open record of sealed claims, verified at the source (specification, reference node and public log)",
+ "creators": [
+  {
+   "name": "Elu, R. A.",
+   "orcid": "0009-0000-1456-2467"
+  }
+ ],
+ "description": "<p>SRC-X.5 is an open protocol for sealed claims. A record states what was predicted and by which criteria, which files were fixed and when, when the test ran, what came out and who replicated it, and carries no personal data. Its id is the SHA-256 of its canonical form, so every copy is verified independently of the host or network it came from.</p><p>This release contains the specification (v1.4.1), a reference node in one file of Python standard library code, the network layer (one read shape for nodes and static mirrors, failover sync), a Model Context Protocol server for AI agents, OpenAPI 3.1, JSON Schema and JSON-LD/W3C PROV interfaces, the OpenTimestamps anchor tool, the public log (10 records) and the sealed launch tests (v1.4: all seven criteria met).</p><p>Paper: https://doi.org/10.5281/zenodo.24555259. Live record: https://r-a-elu-architecture.github.io/srcx5/</p>",
+ "license": "Apache-2.0",
+ "keywords": [
+  "pre-registration",
+  "reproducibility",
+  "content addressing",
+  "append-only log",
+  "provenance",
+  "W3C PROV",
+  "Model Context Protocol",
+  "OpenTimestamps"
+ ],
+ "related_identifiers": [
+  {
+   "identifier": "10.5281/zenodo.24555259",
+   "relation": "isDocumentedBy",
+   "resource_type": "publication-preprint",
+   "scheme": "doi"
+  },
+  {
+   "identifier": "10.5281/zenodo.24555154",
+   "relation": "isReferencedBy",
+   "resource_type": "publication-preprint",
+   "scheme": "doi"
+  },
+  {
+   "identifier": "https://r-a-elu-architecture.github.io/srcx5/",
+   "relation": "isSupplementedBy",
+   "scheme": "url"
+  }
+ ],
+ "language": "eng",
+ "access_right": "open"
+}
