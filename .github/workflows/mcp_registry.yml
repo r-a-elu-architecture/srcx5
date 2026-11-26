@@ -1,0 +1,17 @@
+# v1.5: list SRC-X.5 in the official MCP Registry (namespace io.github.r-a-elu-architecture, GitHub OIDC; no token stored).
+# Run by hand once a public node is listed in NODES.json (server.json names its /mcp URL) or the PyPI package exists.
+name: srcx5-mcp-registry
+on:
+  workflow_dispatch:
+permissions:
+  id-token: write
+  contents: read
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: |
+          curl -sL "https://github.com/modelcontextprotocol/registry/releases/latest/download/mcp-publisher_linux_amd64.tar.gz" | tar xz mcp-publisher
+          ./mcp-publisher login github-oidc
+          ./mcp-publisher publish

@@ -1,0 +1,121 @@
+{
+ "T1_mcp_http": {
+  "init_version": "2025-06-18",
+  "notification": [
+   202,
+   null
+  ],
+  "tools": 6,
+  "verify_valid": 10,
+  "log_intact": true,
+  "personal_quarantined": true,
+  "get_405": 405,
+  "parse_error": -32700,
+  "unknown_method": -32601,
+  "equals_stdio": true,
+  "pass": true
+ },
+ "T2_a2a": {
+  "card_fields": true,
+  "list_all_active": true,
+  "text_verify_intact": true,
+  "unknown_method": -32601,
+  "unknown_tool": -32602,
+  "pass": true
+ },
+ "T3_standards": {
+  "openapi_valid": true,
+  "documents_new": true,
+  "node_responses": {
+   "checked": 27,
+   "nonconforming": []
+  },
+  "pass": true
+ },
+ "T4_install": {
+  "pip_ok": true,
+  "pip_tail": "",
+  "export_rc": 1,
+  "files": {
+   ".well-known/agent-card.json": true,
+   "openapi_v15.json": false,
+   "head.json": true
+  },
+  "head_equal": true,
+  "check_log": "10 entries; chain intact",
+  "pass": false
+ },
+ "T5_converge": {
+  "submit": [
+   201,
+   true
+  ],
+  "pulled": [
+   {
+    "node": "http://127.0.0.1:45951",
+    "added": 2,
+    "bytes": 8010
+   }
+  ],
+  "same_as_A": {
+   "records_identical": 10,
+   "of": 10,
+   "chain_intact": true,
+   "head_equal": true,
+   "pass": true
+  },
+  "tampered_taken": false,
+  "tampered_record_bytes_ok": true,
+  "pass": true
+ },
+ "T6_issue": {
+  "valid": true,
+  "applied": true,
+  "no_json": true,
+  "personal_quarantined": true,
+  "no_shell_effect": true,
+  "pass": true
+ },
+ "T7_status": {
+  "states": [
+   "current",
+   "stale",
+   "down"
+  ],
+  "anchor": [
+   {
+    "head": "d3d70d58bafd97ab91ce9b9d977d0b5578b27e46f86866074b2fb87575bcbdda",
+    "network": "bitcoin",
+    "method": "opentimestamps",
+    "status": "pending",
+    "proof": "d3d70d58bafd97ab91ce9b9d977d0b5578b27e46f86866074b2fb87575bcbdda.ots"
+   }
+  ],
+  "chain_intact": true,
+  "ipfs": {
+   "cid": "bafyTESTcid",
+   "covers": "the read API directory without status.json (ipfs add -r --cid-version 1)",
+   "gateway": "https://bafyTESTcid.ipfs.dweb.link/"
+  },
+  "pass": true
+ },
+ "T8_regression": {
+  "T1": true,
+  "T2": true,
+  "T3": true,
+  "T4": true,
+  "T5": true,
+  "T6": true,
+  "hashes": {
+   "protocol/srcx5.py": true,
+   "protocol/srcx5_net.py": true,
+   "protocol/srcx5_mcp.py": true
+  },
+  "pass": true
+ },
+ "D1_D4": {
+  "pass": null,
+  "note": "observed in GitHub Actions and on the live mirror after the push"
+ },
+ "seconds": 14.8
+}

@@ -1,0 +1,4 @@
+{
+ "about": "Always-on SRC-X.5 nodes (read, submit, MCP over HTTP, A2A). The public log pulls admitted records from every node listed here every six hours. Add your node with one pull request.",
+ "nodes": []
+}

@@ -1,0 +1,23 @@
+# v1.5: keeps an always-on public node on Hugging Face Spaces in step with this repository.
+# One-time setup by the owner: create a Docker Space, then set secret HF_TOKEN (write) and variable HF_SPACE (user/space).
+name: srcx5-hf-space
+on:
+  push:
+    branches: [main]
+    paths: ["srcx5*.py", "deploy/**", "log/**", "NODES.json", "MIRRORS.json"]
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - env: {HF_TOKEN: "${{ secrets.HF_TOKEN }}", HF_SPACE: "${{ vars.HF_SPACE }}"}
+        run: |
+          [ -n "$HF_TOKEN" ] && [ -n "$HF_SPACE" ] || { echo "HF_TOKEN or HF_SPACE not set; skipped"; exit 0; }
+          mkdir /tmp/space && cp -r srcx5*.py SPEC_SRCX5_1_4_1.md openapi.json context.jsonld MIRRORS.json NODES.json llms.txt schema log /tmp/space/
+          mkdir /tmp/space/deploy && cp deploy/entrypoint.sh /tmp/space/deploy/ && cp deploy/Dockerfile /tmp/space/Dockerfile
+          printf -- '---\ntitle: SRC-X.5 node\nemoji: 🔗\ncolorFrom: green\ncolorTo: blue\nsdk: docker\napp_port: 7860\npinned: true\nlicense: apache-2.0\n---\n# SRC-X.5 node\nAn always-on node of the open record of sealed claims: read API, POST /submit, MCP over HTTP at /mcp, A2A at /a2a.\nSource: https://github.com/%s\n' "$GITHUB_REPOSITORY" > /tmp/space/README.md
+          cd /tmp/space && git init -q -b main && git add -A && git -c user.name=srcx5 -c user.email=srcx5@users.noreply.github.com commit -qm "sync from $GITHUB_SHA"
+          git push -q --force "https://user:${HF_TOKEN}@huggingface.co/spaces/${HF_SPACE}" main

@@ -1,0 +1,43 @@
+# v1.5: submit a record through an issue. The issue text is data: written to a file by the GitHub API, parsed as JSON
+# by srcx5_issue.py and checked by srcx5.check(). It is never placed in a shell command.
+name: srcx5-issue-submit
+on:
+  issues:
+    types: [opened, edited, labeled]
+permissions:
+  contents: write
+  issues: write
+  actions: write
+concurrency: {group: srcx5-log, cancel-in-progress: false}
+jobs:
+  admit:
+    if: contains(github.event.issue.labels.*.name, 'submission')
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: "3.12"}
+      - name: fetch the issue text (as a file, through the API)
+        env: {GH_TOKEN: "${{ github.token }}", N: "${{ github.event.issue.number }}"}
+        run: gh api "repos/${GITHUB_REPOSITORY}/issues/${N}" --jq .body > /tmp/body.txt
+      - name: admit (append if every check passes)
+        run: python srcx5_issue.py --body /tmp/body.txt --log log --apply --out /tmp/result.json
+      - name: publish, anchor and answer
+        env: {GH_TOKEN: "${{ github.token }}", N: "${{ github.event.issue.number }}"}
+        run: |
+          python - <<'PY' > /tmp/comment.md
+          import json; r = json.load(open("/tmp/result.json"))
+          if r.get("admitted"):
+              print(f"Admitted. Record `{r['id']}` is in the log; head `{r['head']}`. It appears on every mirror within minutes.")
+          else:
+              print("Not admitted (quarantined, never published). Reasons:\n" + "\n".join(f"- {x}" for x in r.get("reasons", [])))
+          PY
+          if python -c "import json,sys;sys.exit(0 if json.load(open('/tmp/result.json'))['admitted'] else 1)"; then
+            python srcx5.py check-log --log log
+            git config user.name srcx5-admission; git config user.email srcx5-admission@users.noreply.github.com
+            git add log && git commit -qm "admit record from issue #${N}" && git push -q
+            gh workflow run pages.yml || true; gh workflow run anchor_v141.yml || true
+            gh issue comment "$N" --body-file /tmp/comment.md; gh issue close "$N" || true
+          else
+            gh issue comment "$N" --body-file /tmp/comment.md
+          fi

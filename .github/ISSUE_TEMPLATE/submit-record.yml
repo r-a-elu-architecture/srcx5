@@ -1,0 +1,17 @@
+name: Submit a record
+description: Add a sealed claim, a replication or a forecast to the open log. No git needed; the admission check answers here.
+title: "Record: "
+labels: ["submission"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Paste one SRC-X.5 record (JSON). Make one with `python srcx5.py create`, or with the `srcx5_submit` tool of any MCP client.
+        The same seven checks every node runs decide; a record that fails is quarantined with its reasons, never published. No personal data.
+  - type: textarea
+    id: record
+    attributes:
+      label: Record (JSON)
+      render: json
+    validations:
+      required: true

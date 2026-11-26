@@ -1,0 +1,12 @@
+# SEAL SRC-X.5 v1.5 FIX1 2026-11-26T11:36:48Z: fix fixed before the re-check (tests/v15/FIX1_V15.md); harness and criteria unchanged; first results kept.
+a9ab235167f050fb8b56a45ce60f0cb26cffff1f055810c3328cfefed56ea5a1  protocol/srcx5.py
+871f9e5c59b2bc0caa9c36aa12eebd8e9f560d8f36e2f1c1adb40008881ed6da  protocol/srcx5_net.py
+64c6cf3c38a9c53fa8f547077213d1620c7fbf2f6465396e7d7e6c44df02d2ab  protocol/srcx5_mcp.py
+3fcf2d17daee3c7f3bf5958e7ff370fc9847773050aa2c964cdf549024daf9da  protocol/srcx5_node.py
+916f145fd4d2071e8a8968aa7e714391529c2042a42907b5b90154a37fa21649  protocol/srcx5_issue.py
+65fb0c4d0aaa7abe3670389d3e59252a9f6482fc786de25920a2321201cbaf71  protocol/srcx5_install.py
+be6f049f945b73ce5bcfdcce5d36cfaa0b23adc7ad1d9db7942d3d296430b455  protocol/pyproject.toml
+f1e398fbfb89ff7eae3e93afd5f7cd62fc20c792f0595dc40d970ea58e85c56f  protocol/tests/v15/run_v15.py
+43a9fa5eaa1985a03c99bcd6f2361c63ecd808fafcf3c18dfe3524a3c1723723  protocol/tests/v15/PREDICTIONS_V15.md
+73c9fb7f945d95588760d2758a0993f0881d5fb0dacc4b6a385b22085dc0cbab  protocol/tests/v15/FIX1_V15.md
+0abf3255fd562ec4f08f7f0b22d07a59975dbc731589255e40d70dede82c407f  protocol/tests/v15/out/results_15.json

@@ -1,21 +1,31 @@
-# Publishes the viewer and the static read API (site/) to GitHub Pages on every change to the log.
+# Publishes the viewer and the static read API (site/) to GitHub Pages on every change, and on each heartbeat.
+# v1.5: srcx5_node export adds the A2A agent card, openapi_v15.json, NODES.json and status.json (mirrors, nodes,
+# Bitcoin proof state); the IPFS content id of the read API is computed here and written into status.json.
 name: srcx5-pages
 on:
   push:
     branches: [main]
-    paths: ["log/**", "site/**", "SPEC_SRCX5_1_4.md", "SPEC_SRCX5_1_4_1.md", "srcx5_net.py", "openapi.json", "schema/**", "context.jsonld", "MIRRORS.json", "llms.txt"]
+    paths: ["log/**", "site/**", "anchors/**", "SPEC_SRCX5_1_4_1.md", "srcx5_net.py", "srcx5_node.py", "openapi.json", "schema/**", "context.jsonld", "MIRRORS.json", "NODES.json", "llms.txt"]
   workflow_dispatch:
 permissions:
   contents: read
   pages: write
   id-token: write
+concurrency: {group: pages, cancel-in-progress: true}
 jobs:
   deploy:
     runs-on: ubuntu-latest
     environment: {name: github-pages}
     steps:
       - uses: actions/checkout@v4
-      - run: cp SPEC_SRCX5_1_4_1.md site/SPEC.md && cp llms.txt site/llms.txt && python srcx5.py check-log --log log && python srcx5_net.py export --log log --out site/api
+      - run: cp SPEC_SRCX5_1_4_1.md site/SPEC.md && cp llms.txt site/llms.txt && python srcx5.py check-log --log log
+      - run: python srcx5_node.py export --log log --out site/api --anchors anchors --no-probe
+      - name: IPFS content id of the read API (content-addressed, verifiable by anyone with an IPFS client)
+        id: ipfs
+        run: |
+          curl -sL https://dist.ipfs.tech/kubo/v0.32.1/kubo_v0.32.1_linux-amd64.tar.gz | tar xz && ./kubo/ipfs init -q >/dev/null
+          CID=$(./kubo/ipfs add -r -Q --cid-version 1 --only-hash site/api) && echo "cid=$CID" >> $GITHUB_OUTPUT && echo "$CID"
+      - run: python srcx5_node.py export --log log --out site/api --anchors anchors --ipfs "${{ steps.ipfs.outputs.cid }}"
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with: {path: site}

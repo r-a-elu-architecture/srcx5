@@ -12,13 +12,20 @@ by anyone who can compute SHA-256. Each layer connects through its own main stan
 
 | You are | Connect through |
 |---|---|
-| A person | the [browser viewer](https://r-a-elu-architecture.github.io/srcx5/): every record re-checked on your machine |
-| A tool or company system | HTTP and JSON: [`openapi.json`](openapi.json) (OpenAPI 3.1), [`schema/record.schema.json`](schema/record.schema.json) |
-| An AI agent or assistant | MCP: `python srcx5_mcp.py --log log` (list, get, verify, verify the log, submit, linked-data view) |
+| A person | the [browser viewer](https://r-a-elu-architecture.github.io/srcx5/): every record re-checked on your machine; add a record by [opening an issue](https://github.com/r-a-elu-architecture/srcx5/issues/new?template=submit-record.yml) (no git needed) |
+| A tool or company system | HTTP and JSON: `openapi_v15.json` (OpenAPI 3.1, the format agent platforms import as actions or tools), [`schema/record.schema.json`](schema/record.schema.json) |
+| A cloud AI agent | MCP over HTTP: `POST <node>/mcp` (Streamable HTTP; tools list, get, verify, verify the log, submit, linked-data view) |
+| A local AI client | MCP over stdio: `python srcx5_mcp.py --log log`, or `docker run -i --rm ghcr.io/r-a-elu-architecture/srcx5 mcp` |
+| Another agent | Agent2Agent (A2A): `<node>/.well-known/agent-card.json`, JSON-RPC at `POST <node>/a2a` |
 | A research or linked-data tool | JSON-LD in the W3C PROV vocabulary: `api/ld/<id>.jsonld`, [`context.jsonld`](context.jsonld) |
-| A node operator, anywhere | `python srcx5_net.py serve --log log --peer <node or mirror>`: syncs what it lacks, then serves both shapes |
+| A node operator, anywhere | `docker run -p 7860:7860 ghcr.io/r-a-elu-architecture/srcx5`, or `pip install git+https://github.com/r-a-elu-architecture/srcx5` then `srcx5-node serve --log log`; list it in [`NODES.json`](NODES.json) with one pull request |
 | A network with long delays or broken links | records are self-contained bundles: store, forward, verify on arrival |
-| A ledger or archive | anchor the head hash (Bitcoin via OpenTimestamps in [`anchors/`](anchors/)); Zenodo and Software Heritage keep it citable |
+| A ledger, archive or content-addressed network | the head is anchored on Bitcoin (OpenTimestamps, [`anchors/`](anchors/)); the read API's IPFS content id is in `api/status.json`; Zenodo and Software Heritage keep it citable |
+
+**Write anywhere, converge everywhere (v1.5).** A record admitted by any listed node reaches the public log at the next
+heartbeat (every six hours): the log pulls from every node and re-checks each record on arrival. The heartbeat also
+republishes [`status.json`](https://r-a-elu-architecture.github.io/srcx5/api/status.json): which mirrors and nodes hold
+the head, the Bitcoin proof state and the IPFS content id.
 
 Every copy answers the same paths (`ids.json`, `head.json`, `log.json`, `records/<id>.json`, `.well-known/srcx5.json`).
 [`MIRRORS.json`](MIRRORS.json) lists them; sync uses the first that answers and skips any record that does not match its
@@ -58,3 +65,5 @@ Code Apache 2.0 ([`LICENSE`](LICENSE)); specification text CC BY 4.0.
 Elu, R. A. (2026). *SRC-X.5: an open record of sealed claims, verified at the source.* Preprint, Zenodo.
 https://doi.org/10.5281/zenodo.24555259 (machine-readable: [`CITATION.cff`](CITATION.cff))
 Software: Elu, R. A. (2026). *SRC-X.5* (v1.4.1) [Computer software]. Zenodo. https://doi.org/10.5281/zenodo.24557469
+
+<!-- mcp-name: io.github.r-a-elu-architecture/srcx5 -->

@@ -1,0 +1,13 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-09-29/server.schema.json",
+  "name": "io.github.r-a-elu-architecture/srcx5",
+  "title": "SRC-X.5",
+  "description": "Open record of sealed claims: list, read, verify and submit records whose id is their own SHA-256.",
+  "version": "1.5.0",
+  "repository": {"url": "https://github.com/r-a-elu-architecture/srcx5", "source": "github"},
+  "websiteUrl": "https://r-a-elu-architecture.github.io/srcx5/",
+  "packages": [
+    {"registryType": "oci", "identifier": "ghcr.io/r-a-elu-architecture/srcx5:v1.5.0", "transport": {"type": "stdio"},
+     "packageArguments": [{"type": "positional", "value": "mcp"}]}
+  ]
+}

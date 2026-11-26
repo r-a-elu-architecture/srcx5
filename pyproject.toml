@@ -1,0 +1,32 @@
+[build-system]
+requires = ["setuptools>=77"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "srcx5"
+version = "1.5.1"
+description = "SRC-X.5: an open record of sealed claims, verified at the source (specification, node, MCP and A2A, Python standard library only)"
+readme = "README.md"
+license = "Apache-2.0"
+requires-python = ">=3.9"
+authors = [{name = "R. A. Elu"}]
+keywords = ["pre-registration", "reproducibility", "content addressing", "provenance", "mcp", "a2a", "open science"]
+classifiers = ["Programming Language :: Python :: 3", "Topic :: Scientific/Engineering", "Intended Audience :: Science/Research"]
+
+[project.urls]
+Homepage = "https://r-a-elu-architecture.github.io/srcx5/"
+Repository = "https://github.com/r-a-elu-architecture/srcx5"
+Paper = "https://doi.org/10.5281/zenodo.24555259"
+
+[project.scripts]
+srcx5 = "srcx5:main"
+srcx5-net = "srcx5_install:net_main"
+srcx5-node = "srcx5_install:node_main"
+srcx5-mcp = "srcx5_install:mcp_main"
+
+[tool.setuptools]
+py-modules = ["srcx5", "srcx5_net", "srcx5_mcp", "srcx5_anchor", "srcx5_node", "srcx5_issue", "srcx5_install"]
+
+[tool.setuptools.data-files]
+"share/srcx5" = ["openapi.json", "context.jsonld", "MIRRORS.json", "NODES.json", "llms.txt"]
+"share/srcx5/schema" = ["schema/record.schema.json"]
