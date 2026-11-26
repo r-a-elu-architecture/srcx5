@@ -1,7 +1,7 @@
 # An always-on SRC-X.5 node. Free option: a Hugging Face Space (SDK: Docker). Also runs on any container host.
 FROM python:3.12-slim
 WORKDIR /app
-COPY srcx5.py srcx5_net.py srcx5_mcp.py SPEC_SRCX5_1_4.md openapi.json context.jsonld MIRRORS.json llms.txt ./
+COPY srcx5.py srcx5_net.py srcx5_mcp.py srcx5_anchor.py SPEC_SRCX5_1_4_1.md openapi.json context.jsonld MIRRORS.json llms.txt ./
 COPY schema ./schema
 COPY log ./log
 ENV PORT=7860

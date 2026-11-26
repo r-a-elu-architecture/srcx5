@@ -2,13 +2,13 @@
 
 **An open record of sealed claims, verified at the source.** Each record says what was predicted and by which
 criteria, which files were fixed and when, when it ran, what came out, and who replicated it. Its id is the SHA-256 of
-its canonical form, so every copy, on any host or network, is checked rather than trusted. No personal data. Any field.
+its canonical form, so every copy is verified independently of the host or network it came from. No personal data. Any field.
 
-**See it:** [the live record](https://r-a-elu-architecture.github.io/srcx5/) re-checks every record in your browser.
+**Paper:** [doi:10.5281/zenodo.24555259](https://doi.org/10.5281/zenodo.24555259) (preprint, CC BY 4.0). **See it:** [the live record](https://r-a-elu-architecture.github.io/srcx5/) re-checks every record in your browser.
 
 ## Connect from any layer
 A record is canonical bytes whose identity is their own hash, so it travels unchanged over any carrier and is verified
-by anyone who can compute SHA-256. Each layer connects through its own main standard ([`SPEC_SRCX5_1_4.md`](SPEC_SRCX5_1_4.md) §L):
+by anyone who can compute SHA-256. Each layer connects through its own main standard ([`SPEC_SRCX5_1_4_1.md`](SPEC_SRCX5_1_4_1.md) §L):
 
 | You are | Connect through |
 |---|---|
@@ -31,9 +31,9 @@ own hash. A scheduled check refreshes stale mirrors; anyone running a node can b
 - **Replicate:** `python srcx5.py replicate <id> --by <handle> --outcome all|partly|none --summary "…"`.
 
 Every record passes seven checks (DISCLOSURE, CONSENT_PRIVACY, HARM_BOUND, CONFORMANCE, NON_BLOCKING, ATTRIBUTION,
-PURPOSE). Nothing is prohibited from being submitted: what fails a check is quarantined with its reasons and never
-published, and nothing is deleted. A record is replaced by a modified clone that keeps its identity, and nodes audit each
-other (`srcx5.py audit`). The rules live in `srcx5.py` (sealed, unchanged since v1.3); `srcx5_net.py` adds connection
+PURPOSE). Admission is non-blocking: a submission that fails a check is quarantined with its reasons, never published
+and never deleted. A revision supersedes the earlier record and carries the same stable lineage identifier, and nodes
+audit each other (`srcx5.py audit`). The rules live in `srcx5.py` (sealed, unchanged since v1.3); `srcx5_net.py` adds connection
 (v1.4); both use the Python standard library only.
 
 ## In the log on day one
@@ -53,3 +53,7 @@ Version 1.4 launch tests (carriers, failover, standards, AI agents, regression, 
 
 ## Licence
 Code Apache 2.0 ([`LICENSE`](LICENSE)); specification text CC BY 4.0.
+
+## Cite
+Elu, R. A. (2026). *SRC-X.5: an open record of sealed claims, verified at the source.* Preprint, Zenodo.
+https://doi.org/10.5281/zenodo.24555259 (machine-readable: [`CITATION.cff`](CITATION.cff))

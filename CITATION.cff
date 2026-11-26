@@ -1,0 +1,26 @@
+cff-version: 1.2.0
+title: "SRC-X.5: an open record of sealed claims, verified at the source"
+message: "If you use SRC-X.5, please cite the paper below."
+type: software
+authors:
+  - family-names: "Elu"
+    given-names: "R. A."
+    orcid: "https://orcid.org/0009-0000-1456-2467"
+version: "1.4.1"
+date-released: "2026-11-26"
+license: Apache-2.0
+repository-code: "https://github.com/r-a-elu-architecture/srcx5"
+url: "https://r-a-elu-architecture.github.io/srcx5/"
+keywords: [pre-registration, reproducibility, content addressing, append-only log, provenance, OpenTimestamps]
+preferred-citation:
+  type: article
+  title: "SRC-X.5: an open record of sealed claims, verified at the source"
+  authors:
+    - family-names: "Elu"
+      given-names: "R. A."
+      orcid: "https://orcid.org/0009-0000-1456-2467"
+  doi: "10.5281/zenodo.24555259"
+  year: 2026
+  publisher:
+    name: "Zenodo"
+  status: preprint

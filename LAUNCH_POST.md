@@ -12,7 +12,7 @@ Every test whose criteria were not met is published next to the ones that were.
 
 Check it yourself in under a minute:
 
-    git clone <research repository> && cd <it> && pip install numpy scipy && bash reproduce_conf6.sh
+    git clone https://github.com/r-a-elu-architecture/rsos-one-seed && cd rsos-one-seed && pip install numpy scipy && bash reproduce_conf6.sh
 
 Every claim is also a record in SRC-X.5, an open, append-only log. The viewer re-checks each record in your
 browser; `python srcx5.py serve` makes you a node; one command adds a replication. Before launch its admission check
@@ -20,3 +20,7 @@ caught 600 of 600 forged, tampered and personal-data records without blocking a 
 
 Paper (with the limits and every disclosed error), code under Apache 2.0, the specification under CC BY 4.0. Criticism
 is welcome where it lands: as an issue, or as a replication record.
+
+Papers: One Selector, Many Domains https://doi.org/10.5281/zenodo.24555154 · SRC-X.5 https://doi.org/10.5281/zenodo.24555259 ·
+Blind planning and the error-window law https://doi.org/10.5281/zenodo.24555298
+Research release: https://github.com/r-a-elu-architecture/rsos-one-seed · Protocol: https://github.com/r-a-elu-architecture/srcx5
