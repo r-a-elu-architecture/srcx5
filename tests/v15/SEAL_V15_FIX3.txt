@@ -1,0 +1,9 @@
+# SEAL SRC-X.5 v1.5 FIX3 2026-11-26T11:45:40Z: IPFS command fix fixed before D3 is observed again (tests/v15/FIX3_V15.md).
+5efd39256e5e2dc44afaed66df62c10c92ea2cae3a0f848e85aee71cb8bbaa99  protocol/.github/workflows/pages_v152.yml
+e51c68dea4837ed3bd1f61146ac87b7648a165431d481cb4b4aaacfe35478d17  protocol/.github/workflows/heartbeat_v152.yml
+26cdf038fb235a96dd8b55076c1c4515a860b5e7ee1221b44b9150f03568599e  protocol/.github/workflows/issue_submit_v152.yml
+367d07ff415ba45b0cf09cb3fda5a05778376f1d7036b1b7b65947810d5f91d7  protocol/.github/workflows/pages_v151.yml
+f1604e177848e9db65e2a3962b844689202033d84f545bf0436807afe05d4f59  protocol/.github/workflows/heartbeat_v151.yml
+82f4029cb14741f7307b0428016c1c8b5fd0e3ab6e35ff937da276964d1bdc07  protocol/.github/workflows/issue_submit_v151.yml
+2bddbe652ff716a0b582581939fbe00c026bbff82d053e2abfc8c4ef8b91c002  protocol/tests/v15/FIX3_V15.md
+9a0d15f33fcb4fbfa36a9945411e672a3288f82261830e08ed05b79a3c999b8d  protocol/tests/v15/RESULTS_V15.md
